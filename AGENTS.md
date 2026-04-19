@@ -12,6 +12,14 @@
 - Оркестрация идет через labels вида `req_start_*`, `done_*`, `accept_*`, `reject_*`.
 - После каждого шага включается `agent_work_optimizer`.
 
+
+## Source-of-truth policy
+
+- `AGENTS.<ROLE>.md` — единственный источник правды по правилам роли.
+- `ROLE_PROMPT.md` — только шаблон запуска (include + runtime context), без дублирования правил.
+- Общие правила — только в `agents/rules/*`.
+- Логика переходов/rollback — только в `agents/state-machine/*`.
+
 ## Роли
 
 - `orchestrator_story` -> `agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md`

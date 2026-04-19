@@ -49,3 +49,13 @@
 - `AGENTS.md`
 - `agents/state-machine/**`
 
+
+
+## Prompt contract (include-only)
+
+- Воркеры используют `ROLE_PROMPT.md` как thin-template.
+- `ROLE_PROMPT.md` НЕ содержит копию правил; он только ссылается на:
+  - `AGENTS.<ROLE>.md`
+  - `agents/rules/*`
+  - `agents/state-machine/*`
+- Оркестратор при запуске роли заполняет runtime input block (контекст задачи).

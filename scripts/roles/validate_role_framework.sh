@@ -56,4 +56,22 @@ for req in   agents/state-machine/ROLE_PAIRS.md   agents/state-machine/ROLLBACK_
   fi
 done
 
+
+for dir in "${role_dirs[@]}"; do
+  [ -d "$dir" ] || continue
+  role_name="$(basename "$dir")"
+  upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
+  prompt_file="$dir/ROLE_PROMPT.md"
+  agents_ref="agents/roles/$role_name/AGENTS.${upper}.md"
+
+  if ! grep -q "Source of truth" "$prompt_file"; then
+    echo "[roles] ROLE_PROMPT must declare source-of-truth policy: $prompt_file"
+    exit 1
+  fi
+  if ! grep -q "$agents_ref" "$prompt_file"; then
+    echo "[roles] ROLE_PROMPT must reference role AGENTS file: $prompt_file"
+    exit 1
+  fi
+done
+
 echo "[roles] Role framework integrity check passed"
