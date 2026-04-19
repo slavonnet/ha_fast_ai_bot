@@ -1,0 +1,10 @@
+role_id: documentation_developer
+role_name: "Documentation Developer"
+state_model: prefix_plus_role_id
+state_suffix: documentation_developer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

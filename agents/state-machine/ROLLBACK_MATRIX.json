@@ -1,0 +1,4 @@
+{
+  "pointer": "agents/task_worker/story/ROLLBACK_MATRIX.json",
+  "note": "Pointer only. Current Story source. Recommended multi-orchestrator layout: agents/task_worker/<task_type_id>/ROLLBACK_MATRIX.json"
+}

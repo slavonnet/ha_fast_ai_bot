@@ -1,0 +1,10 @@
+role_id: developer_impl
+role_name: "Developer Implementation"
+state_model: prefix_plus_role_id
+state_suffix: developer_impl
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

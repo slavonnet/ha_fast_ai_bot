@@ -1,0 +1,10 @@
+role_id: tdd_test_sufficiency_reviewer
+role_name: "TDD Test Sufficiency Reviewer"
+state_model: prefix_plus_role_id
+state_suffix: tdd_test_sufficiency_reviewer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

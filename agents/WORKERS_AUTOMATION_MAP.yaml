@@ -1,0 +1,19 @@
+version: 1
+note: "Autodiscovery config. No hardcoded role-state labels here."
+entity: issue
+trigger_event: issue_labeled
+workers_discovery:
+  source_glob:
+    - agents/roles/*/ISSUE_LABELS_*.yaml
+    - agents/task_worker/*/ISSUE_LABELS_*.yaml
+  role_id_field: role_id
+  state_model_field: state_model
+  state_suffix_field: state_suffix
+  allowed_prefixes_field: allowed_prefixes
+worker_templates:
+  role_worker:
+    prompt_file_pattern: agents/roles/<role_id>/ROLE_PROMPT.md
+    agents_file_pattern: agents/roles/<role_id>/AGENTS.<ROLE_ID>.md
+  task_worker:
+    prompt_file_pattern: agents/task_worker/<task_type_id>/ROLE_PROMPT.md
+    agents_file_pattern: agents/task_worker/<task_type_id>/AGENTS.*.md

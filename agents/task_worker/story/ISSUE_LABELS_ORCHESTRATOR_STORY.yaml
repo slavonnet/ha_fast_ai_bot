@@ -1,0 +1,10 @@
+role_id: orchestrator_story
+role_name: "Story Orchestrator"
+state_model: prefix_plus_role_id
+state_suffix: orchestrator_story
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

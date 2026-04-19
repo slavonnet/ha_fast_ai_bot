@@ -1,0 +1,10 @@
+role_id: solution_architect
+role_name: "Solution Architect"
+state_model: prefix_plus_role_id
+state_suffix: solution_architect
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

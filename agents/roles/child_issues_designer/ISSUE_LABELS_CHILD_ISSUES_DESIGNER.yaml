@@ -1,0 +1,10 @@
+role_id: child_issues_designer
+role_name: "Child Issues Designer"
+state_model: prefix_plus_role_id
+state_suffix: child_issues_designer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

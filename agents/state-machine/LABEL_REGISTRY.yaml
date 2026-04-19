@@ -1,0 +1,2 @@
+version: 1
+note: "Deprecated pointer. Source of truth is per-role ISSUE_LABELS files."
