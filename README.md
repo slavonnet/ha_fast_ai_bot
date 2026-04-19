@@ -15,11 +15,15 @@
 2. Прочитать процессные документы:
    - `docs/PROJECT_GOVERNANCE.md`
    - `docs/STAGE_CATALOG.md`
+   - `docs/ISSUE_BACKLOG.md`
+   - `docs/issues/README.md`
 3. Использовать шаблоны GitHub:
    - `.github/ISSUE_TEMPLATE/01-stage-meta.yml`
    - `.github/ISSUE_TEMPLATE/02-stage-subtask.yml`
    - `.github/ISSUE_TEMPLATE/03-tech-debt.yml`
    - `.github/PULL_REQUEST_TEMPLATE.md`
+4. Для массового создания issue-команд:
+   - `scripts/github/create_issues_from_seed.sh`
 
 ## CI Quality Gates
 
