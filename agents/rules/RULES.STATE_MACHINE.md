@@ -12,7 +12,9 @@
 
 Правило:
 
-- states каждой роли определяются только в `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`;
+- states определяются только в соответствующем state-файле:
+  - role_worker: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
+  - task_worker: `agents/task_worker/<task_type_id>/ISSUE_LABELS_*.yaml`
 - любые другие префиксы запрещены;
 - дубли state labels вне role state files запрещены.
 
@@ -26,7 +28,7 @@
 ## [TRANSITION.SOURCE]
 
 - Переходы и next-step принадлежат только соответствующему оркестратору типа задачи:
-  - current Story: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+  - current Story: `agents/task_worker/story/ORCHESTRATION_STATE_MACHINE.json`
   - recommended target structure: `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json`
 - Глобальные файлы в `agents/state-machine/` — указатели (pointer), не источник правды.
 

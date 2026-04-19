@@ -1,5 +1,5 @@
 {
-  "pointer_current_story": "agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json",
+  "pointer_current_story": "agents/task_worker/story/ORCHESTRATION_STATE_MACHINE.json",
   "pointer_recommended_pattern": "agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json",
   "note": "Pointer only. Source of truth belongs to corresponding orchestrator for issue task type."
 }

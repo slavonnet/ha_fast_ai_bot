@@ -1,15 +1,15 @@
 # ROLE_PROMPT (Template): orchestrator_story
 
-> Source of truth: `agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md`.
+> Source of truth: `agents/task_worker/story/AGENTS.ORCHESTRATOR_STORY.md`.
 
 ## Include policy
 
 - Этот prompt не дублирует правила роли.
 - Все обязательные правила, ограничения и критерии брать только из:
-  - `agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md`
+  - `agents/task_worker/story/AGENTS.ORCHESTRATOR_STORY.md`
   - `agents/rules/*`
   - `agents/state-machine/*`
-- Label mapping брать из: `agents/roles/orchestrator_story/ISSUE_LABELS_ORCHESTRATOR_STORY.yaml`
+- Label mapping брать из: `agents/task_worker/story/ISSUE_LABELS_ORCHESTRATOR_STORY.yaml`
 
 ## Runtime input block (заполняется оркестратором)
 

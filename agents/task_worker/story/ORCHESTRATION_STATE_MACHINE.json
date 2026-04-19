@@ -46,7 +46,7 @@
     },
     {
       "role_id": "orchestrator_story",
-      "labels_file": "agents/roles/orchestrator_story/ISSUE_LABELS_ORCHESTRATOR_STORY.yaml"
+      "labels_file": "agents/task_worker/story/ISSUE_LABELS_ORCHESTRATOR_STORY.yaml"
     },
     {
       "role_id": "post_merge_subtask_analyzer",

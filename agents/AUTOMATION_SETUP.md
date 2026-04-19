@@ -5,12 +5,16 @@
 ## [AUTO.PRINCIPLES]
 - Один воркер = одна роль.
 - Trigger воркера: label `req_start_<role_id>`.
-- Prompt воркера: `agents/roles/<role_id>/ROLE_PROMPT.md`.
+- Prompt path:
+  - role_worker: `agents/roles/<role_id>/ROLE_PROMPT.md`
+  - task_worker: `agents/task_worker/<task_type_id>/ROLE_PROMPT.md`
 
 ## [AUTO.SOURCES]
-- `[SOURCE.ROLE_STATES]`: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
+- `[SOURCE.ROLE_STATES]`:
+  - role_worker: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
+  - task_worker: `agents/task_worker/<task_type_id>/ISSUE_LABELS_*.yaml`
 - `[SOURCE.ORCHESTRATOR_TRANSITIONS]`:
-  - current Story: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+  - current Story: `agents/task_worker/story/ORCHESTRATION_STATE_MACHINE.json`
   - recommended target structure: `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json`
 - `agents/WORKERS_AUTOMATION_MAP.yaml` — только generated/autodiscovery конфиг.
 

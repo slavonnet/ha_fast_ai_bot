@@ -11,9 +11,15 @@
 - Source: `agents/roles/<role_id>/AGENTS.<ROLE_ID>.md`
 - Load when: запуск конкретной роли.
 
+## [SOURCE.TASK_WORKER_RULES]
+- What: правила orchestrator/task-worker роли.
+- Source: `agents/task_worker/<task_type_id>/AGENTS.*.md`
+- Load when: запуск orchestrator для конкретного типа задачи.
+
 ## [SOURCE.ROLE_STATES]
-- What: states роли.
-- Source: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
+- What: states роли/воркера.
+- Source (role_worker): `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
+- Source (task_worker): `agents/task_worker/<task_type_id>/ISSUE_LABELS_*.yaml`
 - Load when: чтение/изменение labels роли.
 
 ## [SOURCE.ORCHESTRATOR_TYPES]
@@ -24,7 +30,7 @@
 ## [SOURCE.ORCHESTRATOR_TRANSITIONS]
 - What: порядок ролей, next-step, rollback.
 - Source (recommended): `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json`
-- Source (current Story): `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- Source (current Story): `agents/task_worker/story/ORCHESTRATION_STATE_MACHINE.json`
 - Owner: соответствующий orchestrator для конкретного `task_type_id`.
 - Load when: оркестрация или анализ переходов.
 
@@ -37,7 +43,7 @@
 - `[RULE.STATE_MACHINE]` -> `agents/rules/RULES.STATE_MACHINE.md`
 
 ## [ROLE.CATALOG]
-- `[TASK_WORKER.STORY_ORCHESTRATOR.RULES]` -> `agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md`
+- `[TASK_WORKER.STORY_ORCHESTRATOR.RULES]` -> `agents/task_worker/story/AGENTS.ORCHESTRATOR_STORY.md`
 - `[ROLE.TASK_COMPLETENESS_REVIEWER.RULES]` -> `agents/roles/task_completeness_reviewer/AGENTS.TASK_COMPLETENESS_REVIEWER.md`
 - `[ROLE.CHILD_ISSUES_DESIGNER.RULES]` -> `agents/roles/child_issues_designer/AGENTS.CHILD_ISSUES_DESIGNER.md`
 - `[ROLE.TDD_TEST_DESIGNER.RULES]` -> `agents/roles/tdd_test_designer/AGENTS.TDD_TEST_DESIGNER.md`
@@ -57,6 +63,7 @@
 
 ## [SELECTIVE.LOADING.QUICK_GUIDE]
 - Нужны правила роли -> `[ROLE.*.RULES]`
+- Нужны правила orchestrator/task-worker -> `[TASK_WORKER.*.RULES]` или `[SOURCE.TASK_WORKER_RULES]`
 - Нужны states роли -> `[SOURCE.ROLE_STATES]`
 - Нужен next-step/rollback -> `[SOURCE.ORCHESTRATOR_TRANSITIONS]`
 - Нужны общие ограничения -> `[SOURCE.GLOBAL_RULES]`

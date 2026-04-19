@@ -118,8 +118,8 @@ def main() -> int:
         "agents/state-machine/ROLLBACK_MATRIX.json",
         "agents/WORKERS_AUTOMATION_MAP.yaml",
         "agents/AUTOMATION_SETUP.md",
-        "agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json",  # current Story orchestrator
-        "agents/roles/orchestrator_story/ROLLBACK_MATRIX.json",  # current Story orchestrator
+        "agents/task_worker/story/ORCHESTRATION_STATE_MACHINE.json",  # current Story orchestrator
+        "agents/task_worker/story/ROLLBACK_MATRIX.json",  # current Story orchestrator
     ]
     for rel in required_files:
         ensure_exists(ROOT / rel)
