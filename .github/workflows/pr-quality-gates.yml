@@ -41,3 +41,6 @@ jobs:
 
       - name: PR governance structure gate
         run: ./scripts/ci/check_pr_governance.sh
+
+      - name: Role framework integrity gate
+        run: ./scripts/roles/validate_role_framework.sh

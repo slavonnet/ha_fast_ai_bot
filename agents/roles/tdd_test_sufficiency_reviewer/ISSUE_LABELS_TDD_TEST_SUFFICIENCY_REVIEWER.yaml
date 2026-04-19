@@ -1,0 +1,10 @@
+role_id: tdd_test_sufficiency_reviewer
+role_name: "TDD Test Sufficiency Reviewer"
+trigger_labels:
+  - req_start_tdd_test_sufficiency_reviewer
+status_labels:
+  done: done_tdd_test_sufficiency_reviewer
+  accept: accept_tdd_test_sufficiency_reviewer
+  reject: reject_tdd_test_sufficiency_reviewer
+next_roles:
+  - solution_architect

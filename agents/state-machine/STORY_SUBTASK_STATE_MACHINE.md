@@ -1,0 +1,25 @@
+# STORY/SUBTASK STATE MACHINE
+
+Очередность ролей для Story/Subtask issue:
+
+1. `orchestrator_story`
+2. `task_completeness_reviewer`
+3. `child_issues_designer`
+4. `tdd_test_designer`
+5. `tdd_test_sufficiency_reviewer`
+6. `solution_architect`
+7. `architecture_reviewer`
+8. `developer_impl`
+9. `implementation_reviewer`
+10. `documentation_developer`
+11. `documentation_reviewer`
+12. `post_merge_subtask_analyzer`
+
+## Важное правило
+
+После каждого завершенного шага (`accept_<role_id>`) запускается `agent_work_optimizer`.
+
+## Rollback
+
+- Если роль ставит `reject_<role_id>`, оркестратор откатывается к предыдущей релевантной роли.
+- Откат реализуется снятием labels последующих шагов и постановкой нового `req_start_*` на точку отката.

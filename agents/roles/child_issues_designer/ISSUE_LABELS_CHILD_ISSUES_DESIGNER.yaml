@@ -1,0 +1,10 @@
+role_id: child_issues_designer
+role_name: "Child Issues Designer"
+trigger_labels:
+  - req_start_child_issues_designer
+status_labels:
+  done: done_child_issues_designer
+  accept: accept_child_issues_designer
+  reject: reject_child_issues_designer
+next_roles:
+  - tdd_test_designer

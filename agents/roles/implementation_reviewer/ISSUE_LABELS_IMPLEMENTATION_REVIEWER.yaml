@@ -1,0 +1,10 @@
+role_id: implementation_reviewer
+role_name: "Implementation Reviewer"
+trigger_labels:
+  - req_start_implementation_reviewer
+status_labels:
+  done: done_implementation_reviewer
+  accept: accept_implementation_reviewer
+  reject: reject_implementation_reviewer
+next_roles:
+  - documentation_developer

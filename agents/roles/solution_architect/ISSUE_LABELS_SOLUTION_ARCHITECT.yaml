@@ -1,0 +1,10 @@
+role_id: solution_architect
+role_name: "Solution Architect"
+trigger_labels:
+  - req_start_solution_architect
+status_labels:
+  done: done_solution_architect
+  accept: accept_solution_architect
+  reject: reject_solution_architect
+next_roles:
+  - architecture_reviewer

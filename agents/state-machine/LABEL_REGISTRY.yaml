@@ -1,0 +1,158 @@
+version: 1
+labels:
+  - name: req_start_orchestrator_story
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_orchestrator_story
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_orchestrator_story
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_orchestrator_story
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_task_completeness_reviewer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_task_completeness_reviewer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_task_completeness_reviewer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_task_completeness_reviewer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_child_issues_designer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_child_issues_designer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_child_issues_designer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_child_issues_designer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_tdd_test_designer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_tdd_test_designer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_tdd_test_designer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_tdd_test_designer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_tdd_test_sufficiency_reviewer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_tdd_test_sufficiency_reviewer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_tdd_test_sufficiency_reviewer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_tdd_test_sufficiency_reviewer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_solution_architect
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_solution_architect
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_solution_architect
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_solution_architect
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_architecture_reviewer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_architecture_reviewer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_architecture_reviewer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_architecture_reviewer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_developer_impl
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_developer_impl
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_developer_impl
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_developer_impl
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_implementation_reviewer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_implementation_reviewer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_implementation_reviewer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_implementation_reviewer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_documentation_developer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_documentation_developer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_documentation_developer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_documentation_developer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_documentation_reviewer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_documentation_reviewer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_documentation_reviewer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_documentation_reviewer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_post_merge_subtask_analyzer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_post_merge_subtask_analyzer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_post_merge_subtask_analyzer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_post_merge_subtask_analyzer
+    color: "b60205"
+    description: "Role result rejected"
+  - name: req_start_agent_work_optimizer
+    color: "1d76db"
+    description: "Request to start role"
+  - name: done_agent_work_optimizer
+    color: "5319e7"
+    description: "Role finished execution"
+  - name: accept_agent_work_optimizer
+    color: "0e8a16"
+    description: "Role result accepted"
+  - name: reject_agent_work_optimizer
+    color: "b60205"
+    description: "Role result rejected"

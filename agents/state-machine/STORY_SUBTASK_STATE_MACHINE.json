@@ -1,0 +1,30 @@
+{
+  "entity_type": "story_subtask_issue",
+  "roles_order": [
+    "orchestrator_story",
+    "task_completeness_reviewer",
+    "child_issues_designer",
+    "tdd_test_designer",
+    "tdd_test_sufficiency_reviewer",
+    "solution_architect",
+    "architecture_reviewer",
+    "developer_impl",
+    "implementation_reviewer",
+    "documentation_developer",
+    "documentation_reviewer",
+    "post_merge_subtask_analyzer"
+  ],
+  "optimizer_role": "agent_work_optimizer",
+  "labels": {
+    "request": "req_start_<role_id>",
+    "done": "done_<role_id>",
+    "accept": "accept_<role_id>",
+    "reject": "reject_<role_id>"
+  },
+  "rules": {
+    "single_active_request_label": true,
+    "orchestrator_controls_transitions": true,
+    "run_optimizer_after_each_accept": true,
+    "rollback_on_reject": true
+  }
+}

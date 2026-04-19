@@ -1,0 +1,10 @@
+role_id: agent_work_optimizer
+role_name: "Agent Work Optimizer"
+trigger_labels:
+  - req_start_agent_work_optimizer
+status_labels:
+  done: done_agent_work_optimizer
+  accept: accept_agent_work_optimizer
+  reject: reject_agent_work_optimizer
+next_roles:
+  - none

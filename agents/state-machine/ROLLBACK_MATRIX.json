@@ -1,0 +1,48 @@
+{
+  "rollback_rules": [
+    {
+      "on_reject": "task_completeness_reviewer",
+      "rollback_to": "orchestrator_story"
+    },
+    {
+      "on_reject": "child_issues_designer",
+      "rollback_to": "task_completeness_reviewer"
+    },
+    {
+      "on_reject": "tdd_test_designer",
+      "rollback_to": "child_issues_designer"
+    },
+    {
+      "on_reject": "tdd_test_sufficiency_reviewer",
+      "rollback_to": "tdd_test_designer"
+    },
+    {
+      "on_reject": "solution_architect",
+      "rollback_to": "tdd_test_sufficiency_reviewer"
+    },
+    {
+      "on_reject": "architecture_reviewer",
+      "rollback_to": "solution_architect"
+    },
+    {
+      "on_reject": "developer_impl",
+      "rollback_to": "architecture_reviewer"
+    },
+    {
+      "on_reject": "implementation_reviewer",
+      "rollback_to": "developer_impl"
+    },
+    {
+      "on_reject": "documentation_developer",
+      "rollback_to": "implementation_reviewer"
+    },
+    {
+      "on_reject": "documentation_reviewer",
+      "rollback_to": "documentation_developer"
+    },
+    {
+      "on_reject": "post_merge_subtask_analyzer",
+      "rollback_to": "orchestrator_story"
+    }
+  ]
+}

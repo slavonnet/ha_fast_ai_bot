@@ -1,0 +1,10 @@
+role_id: orchestrator_story
+role_name: "Story Orchestrator"
+trigger_labels:
+  - req_start_orchestrator_story
+status_labels:
+  done: done_orchestrator_story
+  accept: accept_orchestrator_story
+  reject: reject_orchestrator_story
+next_roles:
+  - task_completeness_reviewer

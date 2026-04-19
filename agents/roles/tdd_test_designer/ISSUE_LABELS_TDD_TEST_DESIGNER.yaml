@@ -1,0 +1,10 @@
+role_id: tdd_test_designer
+role_name: "TDD Test Designer"
+trigger_labels:
+  - req_start_tdd_test_designer
+status_labels:
+  done: done_tdd_test_designer
+  accept: accept_tdd_test_designer
+  reject: reject_tdd_test_designer
+next_roles:
+  - tdd_test_sufficiency_reviewer
