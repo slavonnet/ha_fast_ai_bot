@@ -20,10 +20,6 @@
   - успех: `done_agent_work_optimizer` + `accept_agent_work_optimizer`;
   - неуспех: `done_agent_work_optimizer` + `reject_agent_work_optimizer`.
 
-## Next step
-- Рекомендуемые следующие роли: нет (финальная/служебная роль).
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

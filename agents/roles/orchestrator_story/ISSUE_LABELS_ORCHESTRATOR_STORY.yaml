@@ -6,5 +6,3 @@ status_labels:
   done: done_orchestrator_story
   accept: accept_orchestrator_story
   reject: reject_orchestrator_story
-next_roles:
-  - task_completeness_reviewer

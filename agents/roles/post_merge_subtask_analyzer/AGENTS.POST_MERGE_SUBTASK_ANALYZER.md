@@ -20,10 +20,6 @@
   - успех: `done_post_merge_subtask_analyzer` + `accept_post_merge_subtask_analyzer`;
   - неуспех: `done_post_merge_subtask_analyzer` + `reject_post_merge_subtask_analyzer`.
 
-## Next step
-- Рекомендуемые следующие роли: нет (финальная/служебная роль).
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

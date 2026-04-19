@@ -20,10 +20,6 @@
   - успех: `done_implementation_reviewer` + `accept_implementation_reviewer`;
   - неуспех: `done_implementation_reviewer` + `reject_implementation_reviewer`.
 
-## Next step
-- Рекомендуемые следующие роли: documentation_developer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

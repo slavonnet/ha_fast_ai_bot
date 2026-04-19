@@ -6,5 +6,3 @@ status_labels:
   done: done_tdd_test_designer
   accept: accept_tdd_test_designer
   reject: reject_tdd_test_designer
-next_roles:
-  - tdd_test_sufficiency_reviewer

@@ -20,10 +20,6 @@
   - успех: `done_documentation_reviewer` + `accept_documentation_reviewer`;
   - неуспех: `done_documentation_reviewer` + `reject_documentation_reviewer`.
 
-## Next step
-- Рекомендуемые следующие роли: post_merge_subtask_analyzer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

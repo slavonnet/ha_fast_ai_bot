@@ -6,5 +6,3 @@ status_labels:
   done: done_documentation_developer
   accept: accept_documentation_developer
   reject: reject_documentation_developer
-next_roles:
-  - documentation_reviewer

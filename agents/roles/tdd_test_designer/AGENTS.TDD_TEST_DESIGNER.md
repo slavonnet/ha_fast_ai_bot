@@ -20,10 +20,6 @@
   - успех: `done_tdd_test_designer` + `accept_tdd_test_designer`;
   - неуспех: `done_tdd_test_designer` + `reject_tdd_test_designer`.
 
-## Next step
-- Рекомендуемые следующие роли: tdd_test_sufficiency_reviewer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

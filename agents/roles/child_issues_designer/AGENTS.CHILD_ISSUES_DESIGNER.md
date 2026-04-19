@@ -20,10 +20,6 @@
   - успех: `done_child_issues_designer` + `accept_child_issues_designer`;
   - неуспех: `done_child_issues_designer` + `reject_child_issues_designer`.
 
-## Next step
-- Рекомендуемые следующие роли: tdd_test_designer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

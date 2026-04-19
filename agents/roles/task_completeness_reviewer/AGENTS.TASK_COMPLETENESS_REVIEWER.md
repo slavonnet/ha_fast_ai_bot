@@ -20,10 +20,6 @@
   - успех: `done_task_completeness_reviewer` + `accept_task_completeness_reviewer`;
   - неуспех: `done_task_completeness_reviewer` + `reject_task_completeness_reviewer`.
 
-## Next step
-- Рекомендуемые следующие роли: child_issues_designer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

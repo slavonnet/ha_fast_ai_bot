@@ -6,5 +6,3 @@ status_labels:
   done: done_documentation_reviewer
   accept: accept_documentation_reviewer
   reject: reject_documentation_reviewer
-next_roles:
-  - post_merge_subtask_analyzer

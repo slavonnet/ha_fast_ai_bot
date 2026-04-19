@@ -19,6 +19,7 @@
 - `ROLE_PROMPT.md` — только шаблон запуска (include + runtime context), без дублирования правил.
 - Общие правила — только в `agents/rules/*`.
 - Логика переходов/rollback — только в `agents/state-machine/*`.
+- Решение о следующем шаге (next-step) — только у `orchestrator_story` через `agents/state-machine/*`.
 
 ## Роли
 

@@ -6,5 +6,3 @@ status_labels:
   done: done_developer_impl
   accept: accept_developer_impl
   reject: reject_developer_impl
-next_roles:
-  - implementation_reviewer

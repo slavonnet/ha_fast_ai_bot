@@ -6,5 +6,3 @@ status_labels:
   done: done_agent_work_optimizer
   accept: accept_agent_work_optimizer
   reject: reject_agent_work_optimizer
-next_roles:
-  - none

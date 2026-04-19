@@ -20,10 +20,6 @@
   - успех: `done_orchestrator_story` + `accept_orchestrator_story`;
   - неуспех: `done_orchestrator_story` + `reject_orchestrator_story`.
 
-## Next step
-- Рекомендуемые следующие роли: task_completeness_reviewer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

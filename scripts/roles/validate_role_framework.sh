@@ -74,4 +74,22 @@ for dir in "${role_dirs[@]}"; do
   fi
 done
 
+
+for dir in "${role_dirs[@]}"; do
+  [ -d "$dir" ] || continue
+  role_name="$(basename "$dir")"
+  upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
+  agents_file="$dir/AGENTS.${upper}.md"
+  labels_file="$dir/ISSUE_LABELS_${upper}.yaml"
+
+  if grep -q "## Next step" "$agents_file"; then
+    echo "[roles] Next-step section is forbidden in role AGENTS file: $agents_file"
+    exit 1
+  fi
+  if grep -q "^next_roles:" "$labels_file"; then
+    echo "[roles] next_roles is forbidden in role labels file: $labels_file"
+    exit 1
+  fi
+done
+
 echo "[roles] Role framework integrity check passed"

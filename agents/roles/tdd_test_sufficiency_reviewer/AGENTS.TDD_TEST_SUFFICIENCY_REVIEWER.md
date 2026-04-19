@@ -20,10 +20,6 @@
   - успех: `done_tdd_test_sufficiency_reviewer` + `accept_tdd_test_sufficiency_reviewer`;
   - неуспех: `done_tdd_test_sufficiency_reviewer` + `reject_tdd_test_sufficiency_reviewer`.
 
-## Next step
-- Рекомендуемые следующие роли: solution_architect.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.

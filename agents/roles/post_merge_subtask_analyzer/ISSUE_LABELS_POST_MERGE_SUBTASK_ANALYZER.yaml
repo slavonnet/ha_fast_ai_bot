@@ -6,5 +6,3 @@ status_labels:
   done: done_post_merge_subtask_analyzer
   accept: accept_post_merge_subtask_analyzer
   reject: reject_post_merge_subtask_analyzer
-next_roles:
-  - none

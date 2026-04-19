@@ -20,10 +20,6 @@
   - успех: `done_solution_architect` + `accept_solution_architect`;
   - неуспех: `done_solution_architect` + `reject_solution_architect`.
 
-## Next step
-- Рекомендуемые следующие роли: architecture_reviewer.
-- После accept обязательно запускать `agent_work_optimizer`.
-
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.
