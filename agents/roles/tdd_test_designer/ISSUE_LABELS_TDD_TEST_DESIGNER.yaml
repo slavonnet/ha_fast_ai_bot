@@ -1,9 +1,10 @@
 role_id: tdd_test_designer
 role_name: "TDD Test Designer"
-trigger_labels:
-  - req_start_tdd_test_designer
-status_labels:
-  in_work: in_work_tdd_test_designer
-  done: done_tdd_test_designer
-  accept: accept_tdd_test_designer
-  reject: reject_tdd_test_designer
+state_model: prefix_plus_role_id
+state_suffix: tdd_test_designer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

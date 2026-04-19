@@ -22,7 +22,7 @@
 3. Прочитать каркас агентных ролей:
    - `AGENTS.md`
    - `agents/rules/`
-   - `agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json`
+   - `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
    - `agents/AUTOMATION_SETUP.md`
 4. Использовать шаблоны GitHub:
    - `.github/ISSUE_TEMPLATE/01-stage-meta.yml`

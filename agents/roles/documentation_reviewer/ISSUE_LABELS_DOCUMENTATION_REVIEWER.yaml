@@ -1,9 +1,10 @@
 role_id: documentation_reviewer
 role_name: "Documentation Reviewer"
-trigger_labels:
-  - req_start_documentation_reviewer
-status_labels:
-  in_work: in_work_documentation_reviewer
-  done: done_documentation_reviewer
-  accept: accept_documentation_reviewer
-  reject: reject_documentation_reviewer
+state_model: prefix_plus_role_id
+state_suffix: documentation_reviewer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

@@ -1,3 +1,2 @@
 version: 1
-note: "Generated snapshot only. Source of truth is agents/roles/*/ISSUE_LABELS_<ROLE>.yaml"
-labels: []
+note: "Deprecated pointer. Source of truth is per-role ISSUE_LABELS files."

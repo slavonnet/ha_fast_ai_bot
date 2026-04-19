@@ -1,9 +1,10 @@
 role_id: agent_work_optimizer
 role_name: "Agent Work Optimizer"
-trigger_labels:
-  - req_start_agent_work_optimizer
-status_labels:
-  in_work: in_work_agent_work_optimizer
-  done: done_agent_work_optimizer
-  accept: accept_agent_work_optimizer
-  reject: reject_agent_work_optimizer
+state_model: prefix_plus_role_id
+state_suffix: agent_work_optimizer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

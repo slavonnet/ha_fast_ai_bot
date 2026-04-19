@@ -1,12 +1,7 @@
 # STORY/SUBTASK STATE MACHINE (Pointer)
 
-Этот файл не содержит правила переходов, чтобы избежать дублирования.
+Source of truth:
 
-Single source of truth:
+- `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
 
-- `agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json`
-
-Важно:
-
-- порядок ролей/rollback/общие правила переходов — только в JSON;
-- states каждой роли (`req_/in_work_/done_/accept_/reject_`) — только в `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`.
+Этот файл только указатель.

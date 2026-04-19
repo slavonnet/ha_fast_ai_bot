@@ -2,80 +2,29 @@
 
 Документ для настройки автоматизаций ролей в Cursor.
 
-## Принцип
-
+## [AUTO.PRINCIPLES]
 - Один воркер = одна роль.
-- Trigger воркера: добавление label `req_start_<role_id>` на issue.
+- Trigger воркера: label `req_start_<role_id>`.
 - Prompt воркера: `agents/roles/<role_id>/ROLE_PROMPT.md`.
-- После завершения воркер выставляет `done_<role_id>` + `accept_<role_id>` или `reject_<role_id>`.
 
-## Источник конфигурации
+## [AUTO.SOURCES]
+- `[SOURCE.ROLE_STATES]`: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
+- `[SOURCE.ORCHESTRATOR_TRANSITIONS]`: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- `agents/WORKERS_AUTOMATION_MAP.yaml` — только generated/autodiscovery конфиг.
 
-Используйте файл:
-
-- `agents/WORKERS_AUTOMATION_MAP.yaml` (generated map)
-
-Там есть:
-
-- role_id;
-- labels_source_file;
-- prompt_file;
-- agents_file.
-
-## Рекомендуемая настройка trigger
-
-- Event type: Issue label changed (или эквивалент в Cursor Automation).
-- Condition: label == `req_start_<role_id>` (берется из `ISSUE_LABELS_<ROLE>.yaml`).
+## [AUTO.TRIGGER]
+- Event type: Issue label changed.
+- Condition: label == `req_start_<role_id>` (derive from role states file).
 - Scope: repository-wide.
 
-## Обязательный post-step
+## [AUTO.CONCURRENCY]
+- Роль проверяет `in_work_<role_id>` lock перед стартом.
+- Если lock есть — завершает запуск без выполнения.
+- Если lock нет — ставит lock, выполняет шаг, снимает lock.
 
-После каждого `accept_<role_id>` оркестратор обязан поставить:
+## [AUTO.POST_STEP]
+- После каждого `accept_<role_id>` оркестратор ставит `req_start_agent_work_optimizer`.
 
-- `req_start_agent_work_optimizer`
-
-Оптимизатор анализирует работу роли и делает улучшения в отдельном PR.
-
-## Постоянная ветка улучшений ролей
-
-Рекомендуемая ветка:
-
-- `cursor/agent-optimization-pipeline-54c5`
-
-Только оптимизатор ролей открывает PR из этой ветки с изменениями:
-
-- `agents/roles/**`
-- `agents/rules/**`
-- `AGENTS.md`
-- `agents/state-machine/**`
-
-
-
-## Prompt contract (include-only)
-
-- Воркеры используют `ROLE_PROMPT.md` как thin-template.
-- `ROLE_PROMPT.md` НЕ содержит копию правил; он только ссылается на:
-  - `AGENTS.<ROLE>.md`
-  - `agents/rules/*`
-  - `agents/state-machine/*`
-- Оркестратор при запуске роли заполняет runtime input block (контекст задачи).
-
-
-## Concurrency lock via in_work labels
-
-Для каждой роли добавлен lock label:
-
-- `in_work_<role_id>`
-
-Протокол:
-
-1. Воркер проверяет наличие `in_work_<role_id>`.
-2. Если label уже есть — воркер завершает запуск без выполнения роли.
-3. Если label нет — воркер ставит `in_work_<role_id>` и начинает работу.
-4. По завершению воркер снимает `in_work_<role_id>` и выставляет `done/accept` или `done/reject`.
-
-
-## Source-of-truth for role states
-
-- Источник states каждой роли: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`.
-- `WORKERS_AUTOMATION_MAP.yaml` и другие map-файлы считаются производными (generated).
+## [AUTO.OPTIMIZER_SCOPE]
+- Оптимизатор обрабатывает только target роль последнего шага issue.
+- Изменения только в `AGENTS.<TARGET_ROLE>.md`.

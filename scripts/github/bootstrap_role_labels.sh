@@ -23,24 +23,16 @@ ensure_label() {
   fi
 }
 
-collect_labels_from_role_files() {
-  local file
-  for file in agents/roles/*/ISSUE_LABELS_*.yaml; do
-    [ -f "$file" ] || continue
-    sed -n 's/^  in_work: //p; s/^  done: //p; s/^  accept: //p; s/^  reject: //p' "$file"
-    sed -n 's/^  - //p' "$file"
-  done | sort -u
-}
+for file in agents/roles/*/ISSUE_LABELS_*.yaml; do
+  [ -f "$file" ] || continue
+  role_id="$(sed -n 's/^role_id: //p' "$file" | head -n 1)"
+  [ -n "$role_id" ] || continue
 
-while IFS= read -r label; do
-  [ -z "$label" ] && continue
-  case "$label" in
-    req_start_*) ensure_label "$label" "1d76db" "Request to start role" ;;
-    in_work_*) ensure_label "$label" "fbca04" "Role is currently processing (lock label)" ;;
-    done_*) ensure_label "$label" "5319e7" "Role finished execution" ;;
-    accept_*) ensure_label "$label" "0e8a16" "Role result accepted" ;;
-    reject_*) ensure_label "$label" "b60205" "Role result rejected" ;;
-  esac
-done < <(collect_labels_from_role_files)
+  ensure_label "req_start_${role_id}" "1d76db" "Request to start role"
+  ensure_label "in_work_${role_id}" "fbca04" "Role is currently processing (lock label)"
+  ensure_label "done_${role_id}" "5319e7" "Role finished execution"
+  ensure_label "accept_${role_id}" "0e8a16" "Role result accepted"
+  ensure_label "reject_${role_id}" "b60205" "Role result rejected"
+done
 
 echo "Role labels bootstrap complete"

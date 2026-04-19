@@ -1,70 +1,13 @@
 version: 1
-note: "Reference map only. Source of truth for role states is ISSUE_LABELS_<ROLE>.yaml"
+note: "Autodiscovery config. No hardcoded role-state labels here."
 entity: issue
 trigger_event: issue_labeled
-workers:
-  - role_id: agent_work_optimizer
-    role_name: "Agent Work Optimizer"
-    labels_source_file: agents/roles/agent_work_optimizer/ISSUE_LABELS_AGENT_WORK_OPTIMIZER.yaml
-    prompt_file: agents/roles/agent_work_optimizer/ROLE_PROMPT.md
-    agents_file: agents/roles/agent_work_optimizer/AGENTS.AGENT_WORK_OPTIMIZER.md
-  - role_id: architecture_reviewer
-    role_name: "Architecture Reviewer"
-    labels_source_file: agents/roles/architecture_reviewer/ISSUE_LABELS_ARCHITECTURE_REVIEWER.yaml
-    prompt_file: agents/roles/architecture_reviewer/ROLE_PROMPT.md
-    agents_file: agents/roles/architecture_reviewer/AGENTS.ARCHITECTURE_REVIEWER.md
-  - role_id: child_issues_designer
-    role_name: "Child Issues Designer"
-    labels_source_file: agents/roles/child_issues_designer/ISSUE_LABELS_CHILD_ISSUES_DESIGNER.yaml
-    prompt_file: agents/roles/child_issues_designer/ROLE_PROMPT.md
-    agents_file: agents/roles/child_issues_designer/AGENTS.CHILD_ISSUES_DESIGNER.md
-  - role_id: developer_impl
-    role_name: "Developer Impl"
-    labels_source_file: agents/roles/developer_impl/ISSUE_LABELS_DEVELOPER_IMPL.yaml
-    prompt_file: agents/roles/developer_impl/ROLE_PROMPT.md
-    agents_file: agents/roles/developer_impl/AGENTS.DEVELOPER_IMPL.md
-  - role_id: documentation_developer
-    role_name: "Documentation Developer"
-    labels_source_file: agents/roles/documentation_developer/ISSUE_LABELS_DOCUMENTATION_DEVELOPER.yaml
-    prompt_file: agents/roles/documentation_developer/ROLE_PROMPT.md
-    agents_file: agents/roles/documentation_developer/AGENTS.DOCUMENTATION_DEVELOPER.md
-  - role_id: documentation_reviewer
-    role_name: "Documentation Reviewer"
-    labels_source_file: agents/roles/documentation_reviewer/ISSUE_LABELS_DOCUMENTATION_REVIEWER.yaml
-    prompt_file: agents/roles/documentation_reviewer/ROLE_PROMPT.md
-    agents_file: agents/roles/documentation_reviewer/AGENTS.DOCUMENTATION_REVIEWER.md
-  - role_id: implementation_reviewer
-    role_name: "Implementation Reviewer"
-    labels_source_file: agents/roles/implementation_reviewer/ISSUE_LABELS_IMPLEMENTATION_REVIEWER.yaml
-    prompt_file: agents/roles/implementation_reviewer/ROLE_PROMPT.md
-    agents_file: agents/roles/implementation_reviewer/AGENTS.IMPLEMENTATION_REVIEWER.md
-  - role_id: orchestrator_story
-    role_name: "Orchestrator Story"
-    labels_source_file: agents/roles/orchestrator_story/ISSUE_LABELS_ORCHESTRATOR_STORY.yaml
-    prompt_file: agents/roles/orchestrator_story/ROLE_PROMPT.md
-    agents_file: agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md
-  - role_id: post_merge_subtask_analyzer
-    role_name: "Post Merge Subtask Analyzer"
-    labels_source_file: agents/roles/post_merge_subtask_analyzer/ISSUE_LABELS_POST_MERGE_SUBTASK_ANALYZER.yaml
-    prompt_file: agents/roles/post_merge_subtask_analyzer/ROLE_PROMPT.md
-    agents_file: agents/roles/post_merge_subtask_analyzer/AGENTS.POST_MERGE_SUBTASK_ANALYZER.md
-  - role_id: solution_architect
-    role_name: "Solution Architect"
-    labels_source_file: agents/roles/solution_architect/ISSUE_LABELS_SOLUTION_ARCHITECT.yaml
-    prompt_file: agents/roles/solution_architect/ROLE_PROMPT.md
-    agents_file: agents/roles/solution_architect/AGENTS.SOLUTION_ARCHITECT.md
-  - role_id: task_completeness_reviewer
-    role_name: "Task Completeness Reviewer"
-    labels_source_file: agents/roles/task_completeness_reviewer/ISSUE_LABELS_TASK_COMPLETENESS_REVIEWER.yaml
-    prompt_file: agents/roles/task_completeness_reviewer/ROLE_PROMPT.md
-    agents_file: agents/roles/task_completeness_reviewer/AGENTS.TASK_COMPLETENESS_REVIEWER.md
-  - role_id: tdd_test_designer
-    role_name: "Tdd Test Designer"
-    labels_source_file: agents/roles/tdd_test_designer/ISSUE_LABELS_TDD_TEST_DESIGNER.yaml
-    prompt_file: agents/roles/tdd_test_designer/ROLE_PROMPT.md
-    agents_file: agents/roles/tdd_test_designer/AGENTS.TDD_TEST_DESIGNER.md
-  - role_id: tdd_test_sufficiency_reviewer
-    role_name: "Tdd Test Sufficiency Reviewer"
-    labels_source_file: agents/roles/tdd_test_sufficiency_reviewer/ISSUE_LABELS_TDD_TEST_SUFFICIENCY_REVIEWER.yaml
-    prompt_file: agents/roles/tdd_test_sufficiency_reviewer/ROLE_PROMPT.md
-    agents_file: agents/roles/tdd_test_sufficiency_reviewer/AGENTS.TDD_TEST_SUFFICIENCY_REVIEWER.md
+workers_discovery:
+  source_glob: agents/roles/*/ISSUE_LABELS_*.yaml
+  role_id_field: role_id
+  state_model_field: state_model
+  state_suffix_field: state_suffix
+  allowed_prefixes_field: allowed_prefixes
+worker_templates:
+  prompt_file_pattern: agents/roles/<role_id>/ROLE_PROMPT.md
+  agents_file_pattern: agents/roles/<role_id>/AGENTS.<ROLE_ID>.md

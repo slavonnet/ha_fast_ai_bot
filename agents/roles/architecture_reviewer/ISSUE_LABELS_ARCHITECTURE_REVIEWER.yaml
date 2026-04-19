@@ -1,9 +1,10 @@
 role_id: architecture_reviewer
 role_name: "Architecture Reviewer"
-trigger_labels:
-  - req_start_architecture_reviewer
-status_labels:
-  in_work: in_work_architecture_reviewer
-  done: done_architecture_reviewer
-  accept: accept_architecture_reviewer
-  reject: reject_architecture_reviewer
+state_model: prefix_plus_role_id
+state_suffix: architecture_reviewer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_

@@ -3,15 +3,10 @@ set -euo pipefail
 
 echo "[roles] Validating role framework integrity"
 
-if [ ! -f "AGENTS.md" ]; then
-  echo "[roles] Missing AGENTS.md"
-  exit 1
-fi
-
-if [ ! -d "agents/roles" ] || [ ! -d "agents/rules" ] || [ ! -d "agents/state-machine" ]; then
-  echo "[roles] Missing agents framework directories"
-  exit 1
-fi
+[ -f "AGENTS.md" ] || { echo "[roles] Missing AGENTS.md"; exit 1; }
+[ -d "agents/roles" ] || { echo "[roles] Missing agents/roles"; exit 1; }
+[ -d "agents/rules" ] || { echo "[roles] Missing agents/rules"; exit 1; }
+[ -d "agents/state-machine" ] || { echo "[roles] Missing agents/state-machine"; exit 1; }
 
 role_dirs=(agents/roles/*)
 if [ ${#role_dirs[@]} -lt 10 ]; then
@@ -37,10 +32,6 @@ for dir in "${role_dirs[@]}"; do
     echo "[roles] Next-step section is forbidden in role AGENTS file: $agents_file"
     exit 1
   fi
-  if grep -q "^next_roles:" "$labels_file"; then
-    echo "[roles] next_roles is forbidden in role labels file: $labels_file"
-    exit 1
-  fi
 
   if ! grep -q "Source of truth" "$prompt_file"; then
     echo "[roles] ROLE_PROMPT must declare source-of-truth policy: $prompt_file"
@@ -51,38 +42,40 @@ for dir in "${role_dirs[@]}"; do
     exit 1
   fi
 
-  for key in in_work done accept reject; do
-    if ! grep -q "^  ${key}: " "$labels_file"; then
-      echo "[roles] Missing status label '${key}' in $labels_file"
-      exit 1
-    fi
-  done
+  rid="$(sed -n 's/^role_id: //p' "$labels_file" | head -n 1)"
+  suffix="$(sed -n 's/^state_suffix: //p' "$labels_file" | head -n 1)"
+  model="$(sed -n 's/^state_model: //p' "$labels_file" | head -n 1)"
 
-  while IFS= read -r label; do
-    [ -z "$label" ] && continue
-    case "$label" in
-      req_*|in_work_*|done_*|accept_*|reject_*) : ;;
+  [ "$rid" = "$role_name" ] || { echo "[roles] role_id mismatch in $labels_file"; exit 1; }
+  [ "$suffix" = "$role_name" ] || { echo "[roles] state_suffix mismatch in $labels_file"; exit 1; }
+  [ "$model" = "prefix_plus_role_id" ] || { echo "[roles] state_model invalid in $labels_file"; exit 1; }
+
+  # Prefix policy allowed only
+  while IFS= read -r prefix; do
+    [ -z "$prefix" ] && continue
+    case "$prefix" in
+      req_|in_work_|done_|accept_|reject_) : ;;
       *)
-        echo "[roles] Label prefix is not allowed ($label) in $labels_file"
+        echo "[roles] Disallowed prefix '$prefix' in $labels_file"
         exit 1
         ;;
     esac
-  done < <(sed -n 's/^  - //p; s/^  in_work: //p; s/^  done: //p; s/^  accept: //p; s/^  reject: //p' "$labels_file")
+  done < <(sed -n 's/^  - //p' "$labels_file")
 done
 
-for req in   agents/rules/RULES.ISSUE_WORKFLOW.md   agents/rules/RULES.PR_WORKFLOW.md   agents/rules/RULES.CODE_DEVELOPMENT.md   agents/rules/RULES.TEST_DEVELOPMENT.md   agents/rules/RULES.DOC_DEVELOPMENT.md   agents/rules/RULES.STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   agents/state-machine/ROLE_PAIRS.md   agents/state-machine/ROLLBACK_MATRIX.json   agents/WORKERS_AUTOMATION_MAP.yaml   agents/AUTOMATION_SETUP.md
+for req in   agents/rules/RULES.ISSUE_WORKFLOW.md   agents/rules/RULES.PR_WORKFLOW.md   agents/rules/RULES.CODE_DEVELOPMENT.md   agents/rules/RULES.TEST_DEVELOPMENT.md   agents/rules/RULES.DOC_DEVELOPMENT.md   agents/rules/RULES.STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   agents/state-machine/ROLE_PAIRS.md   agents/state-machine/ROLLBACK_MATRIX.json   agents/WORKERS_AUTOMATION_MAP.yaml   agents/AUTOMATION_SETUP.md   agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json   agents/roles/orchestrator_story/ROLLBACK_MATRIX.json
   do
   [ -f "$req" ] || { echo "[roles] Missing required file: $req"; exit 1; }
 done
 
-
-if grep -q '"trigger_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"done_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"accept_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"reject_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"in_work_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json; then
-  echo "[roles] State machine JSON must not duplicate role labels; use ISSUE_LABELS files"
+# No label duplication in generated map/state-machine pointers
+if grep -q '^  - role_id:' agents/WORKERS_AUTOMATION_MAP.yaml; then
+  echo "[roles] WORKERS_AUTOMATION_MAP must be autodiscovery config without hardcoded role list"
   exit 1
 fi
 
-if grep -q '^    trigger_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    done_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    accept_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    reject_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    in_work_label:' agents/WORKERS_AUTOMATION_MAP.yaml; then
-  echo "[roles] WORKERS_AUTOMATION_MAP must not duplicate role labels; use labels_source_file"
+if grep -q '"role_state_sources"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"roles_order"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json; then
+  echo "[roles] Global state-machine JSON must be pointer-only"
   exit 1
 fi
 

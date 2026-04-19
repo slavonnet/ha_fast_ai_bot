@@ -75,3 +75,14 @@ runtime_context:
 - Не копировать правила из `AGENTS.<ROLE>.md` в этот prompt.
 - Не переопределять source-of-truth правила локально.
 - Не менять state-machine переходы, если роль не `orchestrator_story`.
+
+## Target scope (strict)
+
+- Оптимизируется только `target_role_id`, переданный оркестратором.
+- Анализируется только последнее выполнение этой target роли в текущей issue.
+- Изменения разрешены только в `AGENTS.<TARGET_ROLE>.md`.
+
+## Label mutation limits
+
+- Следовать `agents/rules/RULES.STATE_MACHINE.md#[LABEL.MUTATION_POLICY]`.
+- Нельзя изменять labels других ролей.

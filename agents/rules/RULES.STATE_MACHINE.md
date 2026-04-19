@@ -1,18 +1,42 @@
 # RULES.STATE_MACHINE
 
-## Базовые labels состояния
+## [STATE.PREFIX_POLICY]
 
-- `req_start_<role_id>`: роль должна стартовать.
-- `done_<role_id>`: роль завершила работу.
-- `accept_<role_id>`: результат принят.
-- `reject_<role_id>`: результат отклонен, нужен rollback.
+Разрешенные префиксы state labels:
 
-## Общие правила переходов
+- `req_`
+- `in_work_`
+- `done_`
+- `accept_`
+- `reject_`
 
-1. Только `orchestrator_story` может выставлять новый `req_start_*`.
-2. После каждого `accept_*` обязательно запускается `req_start_agent_work_optimizer`.
-3. При `reject_*` оркестратор снимает labels последующих шагов и откатывает до нужной роли.
-4. Нельзя иметь одновременно более одного активного `req_start_*` (кроме оптимизатора).
-5. Логика следующего шага хранится только у оркестратора и state-machine артефактов; в role-файлах next-step запрещен.
-6. Каждая роль обязана использовать lock label `in_work_<role_id>` для защиты от параллельного захвата.
-7. States роли хранятся только в `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`; дубли в других файлах запрещены.
+Правило:
+
+- states каждой роли определяются только в `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`;
+- любые другие префиксы запрещены;
+- дубли state labels вне role state files запрещены.
+
+## [TRANSITION.SOURCE]
+
+- Переходы и next-step принадлежат только оркестратору:
+  - `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- Глобальные файлы в `agents/state-machine/` — указатели (pointer), не источник правды.
+
+## [LABEL.MUTATION_POLICY]
+
+- `orchestrator_story` может:
+  - ставить/снимать `req_start_*`;
+  - выполнять cleanup labels при rollback.
+- Любая не-оркестратор роль может изменять только labels своего `role_id`:
+  - `in_work_<role_id>`
+  - `done_<role_id>`
+  - `accept_<role_id>`
+  - `reject_<role_id>`
+- Изменение labels других ролей запрещено.
+
+## [ORCHESTRATION.RULES]
+
+1. Только `orchestrator_story` определяет следующий шаг.
+2. После каждого `accept_<role_id>` оркестратор запускает `req_start_agent_work_optimizer`.
+3. При `reject_<role_id>` оркестратор применяет rollback policy.
+4. Для параллельной безопасности role-worker обязан использовать `in_work_<role_id>` lock.

@@ -3,16 +3,16 @@
 ## Role
 - id: `agent_work_optimizer`
 - name: `Agent Work Optimizer`
-- purpose: После работы каждой роли анализирует логи и предлагает улучшения AGENTS/ROLE_PROMPT/labels в отдельном PR.
+- purpose: Анализирует результат только последней выполненной роли в issue и улучшает только AGENTS-файл этой конкретной роли.
 
 ## Trigger
 - Основной trigger: наличие label `req_start_agent_work_optimizer` в Story/Subtask issue.
 
 ## Input context
-- Текущая issue и ее комментарии;
-- Связанные issues/PR;
-- Глобальные правила из `agents/rules/`;
-- Специфика роли из `ROLE_PROMPT.md`.
+- Target role id (роль, которую оптимизируем в этом запуске);
+- AGENTS-файл target роли;
+- Логи/комментарии только последнего выполнения target роли в текущей issue;
+- Глобальные правила из `agents/rules/`.
 
 ## Output requirements
 - Добавить comment с результатом работы роли;
@@ -30,3 +30,15 @@
 - После завершения роль обязана снять `in_work_agent_work_optimizer` и поставить один из финальных исходов:
   - `done_agent_work_optimizer` + `accept_agent_work_optimizer`
   - `done_agent_work_optimizer` + `reject_agent_work_optimizer`
+
+## Label permissions
+- Разрешено менять только свои labels:
+  - `in_work_agent_work_optimizer`
+  - `done_agent_work_optimizer`
+  - `accept_agent_work_optimizer`
+  - `reject_agent_work_optimizer`
+- Запрещено менять labels других ролей и любые `req_start_*`.
+
+## Scope limits
+- Разрешено изменять только AGENTS-файл target роли.
+- Запрещено изменять state-machine, rules и другие role-файлы в рамках этого запуска.

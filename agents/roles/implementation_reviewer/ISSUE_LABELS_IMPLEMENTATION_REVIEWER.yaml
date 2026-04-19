@@ -1,9 +1,10 @@
 role_id: implementation_reviewer
 role_name: "Implementation Reviewer"
-trigger_labels:
-  - req_start_implementation_reviewer
-status_labels:
-  in_work: in_work_implementation_reviewer
-  done: done_implementation_reviewer
-  accept: accept_implementation_reviewer
-  reject: reject_implementation_reviewer
+state_model: prefix_plus_role_id
+state_suffix: implementation_reviewer
+allowed_prefixes:
+  - req_
+  - in_work_
+  - done_
+  - accept_
+  - reject_
