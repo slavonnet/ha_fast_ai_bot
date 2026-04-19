@@ -6,7 +6,7 @@ echo "Run in environment where gh has write permissions."
 echo
 
 echo "# Milestones"
-for s in {0..8}; do
+for s in {0..9}; do
   echo "gh api repos/:owner/:repo/milestones -f title='Stage ${s}' -f state='open'"
 done
 

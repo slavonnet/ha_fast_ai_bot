@@ -3,8 +3,8 @@
 Этот каталог позволяет понять этапы и нарезку задач без чтения `PLAN.ml`.
 
 ## Каркас
-- 9 Meta issues (STG0..STG8)
-- 36 Subtask issues (по 4 на каждый Stage)
+- 10 Meta issues (STG0..STG9)
+- 40 Subtask issues (по 4 на каждый Stage)
 - Схема зависимостей: Stage N зависит от Stage N-1 по одноименному треку
 
 ## Реестр issues
@@ -56,8 +56,24 @@
 | STG8-02 | Subtask | Production Hardening & Release Readiness | H2 Runtime & Execution | STG8-META, STG7-02 |
 | STG8-03 | Subtask | Production Hardening & Release Readiness | H3 Integration & Reliability | STG8-META, STG7-03 |
 | STG8-04 | Subtask | Production Hardening & Release Readiness | H4 QA, Docs & Release | STG8-META, STG7-04 |
+| STG9-META | Meta | Process Tail Closure & Launch Enablement | — | STG8-META |
+| STG9-01 | Subtask | Process Tail Closure & Launch Enablement | H1 Contracts & Schemas | STG9-META, STG8-01 |
+| STG9-02 | Subtask | Process Tail Closure & Launch Enablement | H2 Runtime & Execution | STG9-META, STG8-02 |
+| STG9-03 | Subtask | Process Tail Closure & Launch Enablement | H3 Integration & Reliability | STG9-META, STG8-03 |
+| STG9-04 | Subtask | Process Tail Closure & Launch Enablement | H4 QA, Docs & Release | STG9-META, STG8-04 |
 
 ## Где лежат тела issues
 - Meta: `docs/issues/meta/`
 - Subtasks: `docs/issues/subtasks/`
 - Общая инструкция: `docs/issues/README.md`
+
+## Отдельный этап хвостов
+
+Для задач, которые остались недоделанными после подготовки или смещаются из ранних этапов, используется:
+
+- `STG9-META` + `STG9-01..STG9-04`
+- Milestone: `Stage 9`
+
+Правило:
+
+- если задача не закрыта в исходном этапе, она не "теряется", а переносится в Stage 9 с ссылкой на источник и причиной переноса.

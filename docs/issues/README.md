@@ -3,7 +3,7 @@
 Пакет подготовленных issues для горизонтальной декомпозиции проекта.
 
 ## Как использовать
-1. Создать Milestones `Stage 0` .. `Stage 8`.
+1. Создать Milestones `Stage 0` .. `Stage 9`.
 2. Создать Meta issues из `docs/issues/meta/*.md`.
 3. Создать Subtask issues из `docs/issues/subtasks/*.md` и проставить parent/dependencies.
 4. Для найденного техдолга создавать отдельные issues по шаблону `Tech Debt`.
