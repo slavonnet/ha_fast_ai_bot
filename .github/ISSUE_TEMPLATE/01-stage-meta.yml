@@ -1,0 +1,75 @@
+name: "Stage Meta"
+description: "Главная задача этапа (цели, вход/выход, ограничения, чеклист)"
+title: "[Stage] <stage-name>: meta"
+labels: ["stage", "meta"]
+body:
+  - type: input
+    id: stage_id
+    attributes:
+      label: Stage ID
+      description: "Например: Stage 2"
+      placeholder: "Stage 2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Цель этапа
+      description: "Что должно быть достигнуто"
+      placeholder: "Коротко и измеримо"
+    validations:
+      required: true
+
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Входные данные
+      description: "Что должно быть готово до начала"
+      placeholder: "Артефакты, зависимости, контракты"
+    validations:
+      required: true
+
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Выходные данные
+      description: "Что будет результатом этапа"
+      placeholder: "Код, тесты, документация, CI"
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Ограничения
+      description: "Критичные правила этапа"
+      placeholder: "Например: не более 2 LLM инференсов"
+    validations:
+      required: true
+
+  - type: textarea
+    id: subtasks
+    attributes:
+      label: Чеклист подзадач
+      description: "Ссылки на связанные Subtask issues"
+      value: |
+        - [ ] #<issue-id> Подзадача 1
+        - [ ] #<issue-id> Подзадача 2
+        - [ ] #<issue-id> Подзадача 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: completion_check
+    attributes:
+      label: Stage closure review
+      description: "Проверка, что ничего не упущено"
+      value: |
+        - [ ] Все planned подзадачи закрыты или явно перенесены в следующий этап
+        - [ ] Для частично реализованных фич созданы отдельные задачи на остаток
+        - [ ] Технический долг оформлен отдельными issue с обратными ссылками
+        - [ ] PR quality gates (coverage/docs/security) зеленые
+        - [ ] Добавлен итоговый комментарий по изменениям идей этапа
+    validations:
+      required: true
