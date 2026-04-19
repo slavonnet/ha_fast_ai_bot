@@ -39,18 +39,18 @@ for s in {0..8}; do
 done
 
 for f in "${subtask_files[@]}"; do
-  if ! rg -q "^## TDD UserStory \(5\)" "$f"; then
+  if ! grep -qE "^## TDD UserStory \(5\)" "$f"; then
     echo "[process] Missing TDD UserStory section in $f"
     exit 1
   fi
 
-  stories_count="$(rg -c "^[1-5]\. As " "$f")"
+  stories_count="$(grep -cE "^[1-5]\. As " "$f")"
   if [ "$stories_count" -lt 5 ]; then
     echo "[process] Expected at least 5 user stories in $f, got $stories_count"
     exit 1
   fi
 
-  if ! rg -q "^## Acceptance criteria" "$f"; then
+  if ! grep -qE "^## Acceptance criteria" "$f"; then
     echo "[process] Missing Acceptance criteria section in $f"
     exit 1
   fi
@@ -62,12 +62,12 @@ if [ ! -f "docs/ISSUE_BACKLOG.md" ]; then
 fi
 
 for s in {0..8}; do
-  if ! rg -q "STG${s}-META" "docs/ISSUE_BACKLOG.md"; then
+  if ! grep -q "STG${s}-META" "docs/ISSUE_BACKLOG.md"; then
     echo "[process] ISSUE_BACKLOG does not reference STG${s}-META"
     exit 1
   fi
   for t in {1..4}; do
-    if ! rg -q "STG${s}-0${t}" "docs/ISSUE_BACKLOG.md"; then
+    if ! grep -q "STG${s}-0${t}" "docs/ISSUE_BACKLOG.md"; then
       echo "[process] ISSUE_BACKLOG does not reference STG${s}-0${t}"
       exit 1
     fi

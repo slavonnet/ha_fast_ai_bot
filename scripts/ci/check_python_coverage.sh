@@ -4,7 +4,7 @@ set -euo pipefail
 echo "[coverage] Running tests with strict 100% threshold"
 
 if [ -f "scripts/ci/changed_files.txt" ]; then
-  if ! rg -q "^(src/|app/|ha_fast_ai_bot/|tests/)" scripts/ci/changed_files.txt; then
+  if ! grep -qE "^(src/|app/|ha_fast_ai_bot/|tests/)" scripts/ci/changed_files.txt; then
     echo "[coverage] No source/test changes detected, skipping coverage gate"
     exit 0
   fi

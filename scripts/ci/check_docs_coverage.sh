@@ -25,8 +25,8 @@ echo "[docs] Base docs exist and are non-empty"
 
 if [ -f "scripts/ci/changed_files.txt" ]; then
   echo "[docs] Verifying documentation update for changed source files"
-  if rg -q "^(src/|app/|ha_fast_ai_bot/)" scripts/ci/changed_files.txt; then
-    if ! rg -q "^(docs/|README.md)" scripts/ci/changed_files.txt; then
+  if grep -qE "^(src/|app/|ha_fast_ai_bot/)" scripts/ci/changed_files.txt; then
+    if ! grep -qE "^(docs/|README.md)" scripts/ci/changed_files.txt; then
       echo "[docs] Source changed without docs update"
       exit 1
     fi
