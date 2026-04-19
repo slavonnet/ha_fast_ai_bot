@@ -74,7 +74,7 @@ runtime_context:
 
 - Не копировать правила из `AGENTS.<ROLE>.md` в этот prompt.
 - Не переопределять source-of-truth правила локально.
-- Не менять state-machine переходы, если роль не `orchestrator_story`.
+- Не изменять state-machine конфигурацию (файлы переходов/rollback), если роль не `orchestrator_story`.
 
 ## Target scope (strict)
 
@@ -85,7 +85,8 @@ runtime_context:
 ## Label mutation limits
 
 - Следовать `agents/rules/RULES.STATE_MACHINE.md#[LABEL.MUTATION_POLICY]`.
-- Разрешено менять только labels с suffix `agent_work_optimizer` и префиксами:
+- Изменение runtime labels своего role_id разрешено и не считается изменением state-machine конфигурации.
+- Менять можно только labels с suffix `agent_work_optimizer` и префиксами:
   - `in_work_`
   - `done_`
   - `accept_`

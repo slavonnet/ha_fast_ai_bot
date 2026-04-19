@@ -21,8 +21,9 @@
   - неуспех: `done_developer_impl` + `reject_developer_impl`.
 
 ## Constraints
-- Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
+- Роль не изменяет state-machine конфигурацию (файлы переходов/rollback), если это не `orchestrator_story`.
 - Роль не пропускает обязательные проверки по своему этапу.
+- Изменение runtime labels своего role_id допускается по `agents/rules/RULES.STATE_MACHINE.md#[LABEL.MUTATION_POLICY]`; это не изменение state-machine конфигурации.
 
 ## Concurrency lock (in_work)
 - Перед началом роль должна atomically выставить `in_work_developer_impl`.

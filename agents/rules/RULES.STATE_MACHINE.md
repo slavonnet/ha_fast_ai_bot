@@ -16,6 +16,12 @@
 - любые другие префиксы запрещены;
 - дубли state labels вне role state files запрещены.
 
+## [STATE.TERMS]
+
+- **State-machine configuration**: файлы переходов/rollback (например orchestrator state machine JSON).
+- **Runtime state labels**: labels на issue (`req_`, `in_work_`, `done_`, `accept_`, `reject_`).
+- Изменение runtime labels по policy разрешено и не считается изменением state-machine configuration.
+
 ## [TRANSITION.SOURCE]
 
 - Переходы и next-step принадлежат только оркестратору:
