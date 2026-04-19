@@ -3,6 +3,7 @@ role_name: "Documentation Reviewer"
 trigger_labels:
   - req_start_documentation_reviewer
 status_labels:
+  in_work: in_work_documentation_reviewer
   done: done_documentation_reviewer
   accept: accept_documentation_reviewer
   reject: reject_documentation_reviewer

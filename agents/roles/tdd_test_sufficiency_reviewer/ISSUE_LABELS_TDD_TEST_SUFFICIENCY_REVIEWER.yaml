@@ -3,6 +3,7 @@ role_name: "TDD Test Sufficiency Reviewer"
 trigger_labels:
   - req_start_tdd_test_sufficiency_reviewer
 status_labels:
+  in_work: in_work_tdd_test_sufficiency_reviewer
   done: done_tdd_test_sufficiency_reviewer
   accept: accept_tdd_test_sufficiency_reviewer
   reject: reject_tdd_test_sufficiency_reviewer

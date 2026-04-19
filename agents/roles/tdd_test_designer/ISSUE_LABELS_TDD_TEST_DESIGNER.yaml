@@ -3,6 +3,7 @@ role_name: "TDD Test Designer"
 trigger_labels:
   - req_start_tdd_test_designer
 status_labels:
+  in_work: in_work_tdd_test_designer
   done: done_tdd_test_designer
   accept: accept_tdd_test_designer
   reject: reject_tdd_test_designer

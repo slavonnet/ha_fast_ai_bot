@@ -5,6 +5,7 @@ roles:
   - role_id: orchestrator_story
     role_name: "Story Orchestrator"
     trigger_label: req_start_orchestrator_story
+    in_work_label: in_work_orchestrator_story
     done_label: done_orchestrator_story
     accept_label: accept_orchestrator_story
     reject_label: reject_orchestrator_story
@@ -14,6 +15,7 @@ roles:
   - role_id: task_completeness_reviewer
     role_name: "Task Completeness Reviewer"
     trigger_label: req_start_task_completeness_reviewer
+    in_work_label: in_work_task_completeness_reviewer
     done_label: done_task_completeness_reviewer
     accept_label: accept_task_completeness_reviewer
     reject_label: reject_task_completeness_reviewer
@@ -23,6 +25,7 @@ roles:
   - role_id: child_issues_designer
     role_name: "Child Issues Designer"
     trigger_label: req_start_child_issues_designer
+    in_work_label: in_work_child_issues_designer
     done_label: done_child_issues_designer
     accept_label: accept_child_issues_designer
     reject_label: reject_child_issues_designer
@@ -32,6 +35,7 @@ roles:
   - role_id: tdd_test_designer
     role_name: "TDD Test Designer"
     trigger_label: req_start_tdd_test_designer
+    in_work_label: in_work_tdd_test_designer
     done_label: done_tdd_test_designer
     accept_label: accept_tdd_test_designer
     reject_label: reject_tdd_test_designer
@@ -41,6 +45,7 @@ roles:
   - role_id: tdd_test_sufficiency_reviewer
     role_name: "TDD Test Sufficiency Reviewer"
     trigger_label: req_start_tdd_test_sufficiency_reviewer
+    in_work_label: in_work_tdd_test_sufficiency_reviewer
     done_label: done_tdd_test_sufficiency_reviewer
     accept_label: accept_tdd_test_sufficiency_reviewer
     reject_label: reject_tdd_test_sufficiency_reviewer
@@ -50,6 +55,7 @@ roles:
   - role_id: solution_architect
     role_name: "Solution Architect"
     trigger_label: req_start_solution_architect
+    in_work_label: in_work_solution_architect
     done_label: done_solution_architect
     accept_label: accept_solution_architect
     reject_label: reject_solution_architect
@@ -59,6 +65,7 @@ roles:
   - role_id: architecture_reviewer
     role_name: "Architecture Reviewer"
     trigger_label: req_start_architecture_reviewer
+    in_work_label: in_work_architecture_reviewer
     done_label: done_architecture_reviewer
     accept_label: accept_architecture_reviewer
     reject_label: reject_architecture_reviewer
@@ -68,6 +75,7 @@ roles:
   - role_id: developer_impl
     role_name: "Developer Implementation"
     trigger_label: req_start_developer_impl
+    in_work_label: in_work_developer_impl
     done_label: done_developer_impl
     accept_label: accept_developer_impl
     reject_label: reject_developer_impl
@@ -77,6 +85,7 @@ roles:
   - role_id: implementation_reviewer
     role_name: "Implementation Reviewer"
     trigger_label: req_start_implementation_reviewer
+    in_work_label: in_work_implementation_reviewer
     done_label: done_implementation_reviewer
     accept_label: accept_implementation_reviewer
     reject_label: reject_implementation_reviewer
@@ -86,6 +95,7 @@ roles:
   - role_id: documentation_developer
     role_name: "Documentation Developer"
     trigger_label: req_start_documentation_developer
+    in_work_label: in_work_documentation_developer
     done_label: done_documentation_developer
     accept_label: accept_documentation_developer
     reject_label: reject_documentation_developer
@@ -95,6 +105,7 @@ roles:
   - role_id: documentation_reviewer
     role_name: "Documentation Reviewer"
     trigger_label: req_start_documentation_reviewer
+    in_work_label: in_work_documentation_reviewer
     done_label: done_documentation_reviewer
     accept_label: accept_documentation_reviewer
     reject_label: reject_documentation_reviewer
@@ -104,6 +115,7 @@ roles:
   - role_id: post_merge_subtask_analyzer
     role_name: "Post-Merge Subtask Analyzer"
     trigger_label: req_start_post_merge_subtask_analyzer
+    in_work_label: in_work_post_merge_subtask_analyzer
     done_label: done_post_merge_subtask_analyzer
     accept_label: accept_post_merge_subtask_analyzer
     reject_label: reject_post_merge_subtask_analyzer
@@ -113,6 +125,7 @@ roles:
   - role_id: agent_work_optimizer
     role_name: "Agent Work Optimizer"
     trigger_label: req_start_agent_work_optimizer
+    in_work_label: in_work_agent_work_optimizer
     done_label: done_agent_work_optimizer
     accept_label: accept_agent_work_optimizer
     reject_label: reject_agent_work_optimizer

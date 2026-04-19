@@ -23,3 +23,10 @@
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.
+
+## Concurrency lock (in_work)
+- Перед началом роль должна atomically выставить `in_work_agent_work_optimizer`.
+- Если `in_work_agent_work_optimizer` уже есть, роль не начинает работу и завершает запуск без изменений.
+- После завершения роль обязана снять `in_work_agent_work_optimizer` и поставить один из финальных исходов:
+  - `done_agent_work_optimizer` + `accept_agent_work_optimizer`
+  - `done_agent_work_optimizer` + `reject_agent_work_optimizer`

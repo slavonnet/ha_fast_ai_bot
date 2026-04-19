@@ -38,6 +38,13 @@ runtime_context:
   rollback_policy_hint: "<optional>"
 ```
 
+## Concurrency protocol
+
+1. Проверить lock label `in_work_post_merge_subtask_analyzer`.
+2. Если lock уже есть — не выполнять роль, чтобы не забрать занятую задачу.
+3. Если lock отсутствует — поставить `in_work_post_merge_subtask_analyzer` и продолжить.
+4. По завершению обязательно снять `in_work_post_merge_subtask_analyzer` и выставить финальные labels из `ISSUE_LABELS_<ROLE>.yaml`.
+
 ## Execution contract
 
 1. Прочитать runtime_context.

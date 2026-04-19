@@ -23,3 +23,10 @@
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.
+
+## Concurrency lock (in_work)
+- Перед началом роль должна atomically выставить `in_work_documentation_reviewer`.
+- Если `in_work_documentation_reviewer` уже есть, роль не начинает работу и завершает запуск без изменений.
+- После завершения роль обязана снять `in_work_documentation_reviewer` и поставить один из финальных исходов:
+  - `done_documentation_reviewer` + `accept_documentation_reviewer`
+  - `done_documentation_reviewer` + `reject_documentation_reviewer`

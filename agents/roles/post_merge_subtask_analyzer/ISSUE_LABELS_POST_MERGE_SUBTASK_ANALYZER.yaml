@@ -3,6 +3,7 @@ role_name: "Post-Merge Subtask Analyzer"
 trigger_labels:
   - req_start_post_merge_subtask_analyzer
 status_labels:
+  in_work: in_work_post_merge_subtask_analyzer
   done: done_post_merge_subtask_analyzer
   accept: accept_post_merge_subtask_analyzer
   reject: reject_post_merge_subtask_analyzer

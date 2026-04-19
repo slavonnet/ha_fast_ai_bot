@@ -3,6 +3,7 @@ role_name: "Developer Implementation"
 trigger_labels:
   - req_start_developer_impl
 status_labels:
+  in_work: in_work_developer_impl
   done: done_developer_impl
   accept: accept_developer_impl
   reject: reject_developer_impl

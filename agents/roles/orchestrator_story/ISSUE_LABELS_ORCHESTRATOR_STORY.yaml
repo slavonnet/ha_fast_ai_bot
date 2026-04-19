@@ -3,6 +3,7 @@ role_name: "Story Orchestrator"
 trigger_labels:
   - req_start_orchestrator_story
 status_labels:
+  in_work: in_work_orchestrator_story
   done: done_orchestrator_story
   accept: accept_orchestrator_story
   reject: reject_orchestrator_story

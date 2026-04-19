@@ -23,3 +23,10 @@
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.
+
+## Concurrency lock (in_work)
+- Перед началом роль должна atomically выставить `in_work_child_issues_designer`.
+- Если `in_work_child_issues_designer` уже есть, роль не начинает работу и завершает запуск без изменений.
+- После завершения роль обязана снять `in_work_child_issues_designer` и поставить один из финальных исходов:
+  - `done_child_issues_designer` + `accept_child_issues_designer`
+  - `done_child_issues_designer` + `reject_child_issues_designer`

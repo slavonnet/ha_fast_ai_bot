@@ -3,6 +3,7 @@ role_name: "Task Completeness Reviewer"
 trigger_labels:
   - req_start_task_completeness_reviewer
 status_labels:
+  in_work: in_work_task_completeness_reviewer
   done: done_task_completeness_reviewer
   accept: accept_task_completeness_reviewer
   reject: reject_task_completeness_reviewer

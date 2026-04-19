@@ -23,3 +23,10 @@
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.
+
+## Concurrency lock (in_work)
+- Перед началом роль должна atomically выставить `in_work_developer_impl`.
+- Если `in_work_developer_impl` уже есть, роль не начинает работу и завершает запуск без изменений.
+- После завершения роль обязана снять `in_work_developer_impl` и поставить один из финальных исходов:
+  - `done_developer_impl` + `accept_developer_impl`
+  - `done_developer_impl` + `reject_developer_impl`

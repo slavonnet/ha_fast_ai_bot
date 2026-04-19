@@ -28,6 +28,7 @@ while IFS= read -r label; do
   case "$label" in
     req_start_*) ensure_label "$label" "1d76db" "Request to start role" ;;
     done_*) ensure_label "$label" "5319e7" "Role finished execution" ;;
+    in_work_*) ensure_label "$label" "fbca04" "Role is currently processing (lock label)" ;;
     accept_*) ensure_label "$label" "0e8a16" "Role result accepted" ;;
     reject_*) ensure_label "$label" "b60205" "Role result rejected" ;;
   esac

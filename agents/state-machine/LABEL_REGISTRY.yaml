@@ -156,3 +156,43 @@ labels:
   - name: reject_agent_work_optimizer
     color: "b60205"
     description: "Role result rejected"
+
+  - name: in_work_agent_work_optimizer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_architecture_reviewer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_child_issues_designer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_developer_impl
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_documentation_developer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_documentation_reviewer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_implementation_reviewer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_orchestrator_story
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_post_merge_subtask_analyzer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_solution_architect
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_task_completeness_reviewer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_tdd_test_designer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"
+  - name: in_work_tdd_test_sufficiency_reviewer
+    color: "fbca04"
+    description: "Role is currently processing (lock label)"

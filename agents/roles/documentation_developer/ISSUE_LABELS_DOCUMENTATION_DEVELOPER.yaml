@@ -3,6 +3,7 @@ role_name: "Documentation Developer"
 trigger_labels:
   - req_start_documentation_developer
 status_labels:
+  in_work: in_work_documentation_developer
   done: done_documentation_developer
   accept: accept_documentation_developer
   reject: reject_documentation_developer

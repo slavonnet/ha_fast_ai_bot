@@ -20,6 +20,7 @@
 - Общие правила — только в `agents/rules/*`.
 - Логика переходов/rollback — только в `agents/state-machine/*`.
 - Решение о следующем шаге (next-step) — только у `orchestrator_story` через `agents/state-machine/*`.
+- Для защиты параллельных запусков каждая роль использует lock label `in_work_<role_id>`.
 
 ## Роли
 

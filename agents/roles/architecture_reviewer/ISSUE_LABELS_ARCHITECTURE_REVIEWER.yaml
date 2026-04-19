@@ -3,6 +3,7 @@ role_name: "Architecture Reviewer"
 trigger_labels:
   - req_start_architecture_reviewer
 status_labels:
+  in_work: in_work_architecture_reviewer
   done: done_architecture_reviewer
   accept: accept_architecture_reviewer
   reject: reject_architecture_reviewer

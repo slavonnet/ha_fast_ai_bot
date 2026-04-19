@@ -92,4 +92,22 @@ for dir in "${role_dirs[@]}"; do
   fi
 done
 
+
+for dir in "${role_dirs[@]}"; do
+  [ -d "$dir" ] || continue
+  role_name="$(basename "$dir")"
+  upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
+  labels_file="$dir/ISSUE_LABELS_${upper}.yaml"
+
+  if ! grep -q "^  in_work: in_work_${role_name}$" "$labels_file"; then
+    echo "[roles] in_work label is required in role labels file: $labels_file"
+    exit 1
+  fi
+
+  if ! grep -q "name: in_work_${role_name}$" agents/state-machine/LABEL_REGISTRY.yaml; then
+    echo "[roles] LABEL_REGISTRY missing in_work label for role: $role_name"
+    exit 1
+  fi
+done
+
 echo "[roles] Role framework integrity check passed"

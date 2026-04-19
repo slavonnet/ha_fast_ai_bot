@@ -38,6 +38,13 @@ runtime_context:
   rollback_policy_hint: "<optional>"
 ```
 
+## Concurrency protocol
+
+1. Проверить lock label `in_work_documentation_developer`.
+2. Если lock уже есть — не выполнять роль, чтобы не забрать занятую задачу.
+3. Если lock отсутствует — поставить `in_work_documentation_developer` и продолжить.
+4. По завершению обязательно снять `in_work_documentation_developer` и выставить финальные labels из `ISSUE_LABELS_<ROLE>.yaml`.
+
 ## Execution contract
 
 1. Прочитать runtime_context.

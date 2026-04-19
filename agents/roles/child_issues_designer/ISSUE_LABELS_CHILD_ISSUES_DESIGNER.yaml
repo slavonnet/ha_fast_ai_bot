@@ -3,6 +3,7 @@ role_name: "Child Issues Designer"
 trigger_labels:
   - req_start_child_issues_designer
 status_labels:
+  in_work: in_work_child_issues_designer
   done: done_child_issues_designer
   accept: accept_child_issues_designer
   reject: reject_child_issues_designer

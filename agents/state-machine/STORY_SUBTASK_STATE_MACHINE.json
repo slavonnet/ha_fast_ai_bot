@@ -19,13 +19,16 @@
     "request": "req_start_<role_id>",
     "done": "done_<role_id>",
     "accept": "accept_<role_id>",
-    "reject": "reject_<role_id>"
+    "reject": "reject_<role_id>",
+    "in_work": "in_work_<role_id>"
   },
   "rules": {
     "single_active_request_label": true,
     "orchestrator_controls_transitions": true,
     "run_optimizer_after_each_accept": true,
     "rollback_on_reject": true,
-    "next_step_source_of_truth": "orchestrator_story_via_state_machine"
+    "next_step_source_of_truth": "orchestrator_story_via_state_machine",
+    "in_work_lock_required": true,
+    "parallel_claim_protection": true
   }
 }

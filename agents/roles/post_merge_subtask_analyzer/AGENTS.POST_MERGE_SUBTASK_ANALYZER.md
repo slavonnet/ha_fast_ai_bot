@@ -23,3 +23,10 @@
 ## Constraints
 - Роль не изменяет state-machine напрямую (кроме `orchestrator_story`).
 - Роль не пропускает обязательные проверки по своему этапу.
+
+## Concurrency lock (in_work)
+- Перед началом роль должна atomically выставить `in_work_post_merge_subtask_analyzer`.
+- Если `in_work_post_merge_subtask_analyzer` уже есть, роль не начинает работу и завершает запуск без изменений.
+- После завершения роль обязана снять `in_work_post_merge_subtask_analyzer` и поставить один из финальных исходов:
+  - `done_post_merge_subtask_analyzer` + `accept_post_merge_subtask_analyzer`
+  - `done_post_merge_subtask_analyzer` + `reject_post_merge_subtask_analyzer`

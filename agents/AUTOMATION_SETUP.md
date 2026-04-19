@@ -59,3 +59,17 @@
   - `agents/rules/*`
   - `agents/state-machine/*`
 - Оркестратор при запуске роли заполняет runtime input block (контекст задачи).
+
+
+## Concurrency lock via in_work labels
+
+Для каждой роли добавлен lock label:
+
+- `in_work_<role_id>`
+
+Протокол:
+
+1. Воркер проверяет наличие `in_work_<role_id>`.
+2. Если label уже есть — воркер завершает запуск без выполнения роли.
+3. Если label нет — воркер ставит `in_work_<role_id>` и начинает работу.
+4. По завершению воркер снимает `in_work_<role_id>` и выставляет `done/accept` или `done/reject`.
