@@ -17,6 +17,8 @@
    - `docs/STAGE_CATALOG.md`
    - `docs/ISSUE_BACKLOG.md`
    - `docs/issues/README.md`
+   - `docs/GITHUB_SETUP_RUNBOOK.md`
+   - `docs/PROJECT_START_READINESS.md`
 3. Использовать шаблоны GitHub:
    - `.github/ISSUE_TEMPLATE/01-stage-meta.yml`
    - `.github/ISSUE_TEMPLATE/02-stage-subtask.yml`
@@ -24,6 +26,7 @@
    - `.github/PULL_REQUEST_TEMPLATE.md`
 4. Для массового создания issue-команд:
    - `scripts/github/create_issues_from_seed.sh`
+   - `scripts/github/bootstrap_project_setup.sh`
 
 ## CI Quality Gates
 
@@ -36,6 +39,8 @@
 - `scripts/ci/check_python_coverage.sh`
 - `scripts/ci/check_docs_coverage.sh`
 - `scripts/ci/check_security_audit.sh`
+- `scripts/ci/check_issue_seed_integrity.sh`
+- `scripts/ci/check_pr_governance.sh`
 
 ## Правило ведения этапов
 

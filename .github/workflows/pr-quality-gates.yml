@@ -35,3 +35,9 @@ jobs:
 
       - name: Security audit gate
         run: ./scripts/ci/check_security_audit.sh
+
+      - name: Issue seed integrity gate
+        run: ./scripts/ci/check_issue_seed_integrity.sh
+
+      - name: PR governance structure gate
+        run: ./scripts/ci/check_pr_governance.sh

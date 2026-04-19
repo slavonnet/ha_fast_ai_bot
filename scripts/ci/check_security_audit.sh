@@ -4,7 +4,7 @@ set -euo pipefail
 echo "[security] Running dependency vulnerability audit"
 
 if [ -f "scripts/ci/changed_files.txt" ]; then
-  if ! rg -q "^(requirements.txt|pyproject.toml|package.json|package-lock.json|poetry.lock)" scripts/ci/changed_files.txt; then
+  if ! grep -qE "^(requirements.txt|pyproject.toml|package.json|package-lock.json|poetry.lock)" scripts/ci/changed_files.txt; then
     echo "[security] No dependency manifest changes detected, skipping audit gate"
     exit 0
   fi
