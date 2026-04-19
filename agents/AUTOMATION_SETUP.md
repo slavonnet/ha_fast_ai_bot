@@ -13,19 +13,19 @@
 
 Используйте файл:
 
-- `agents/WORKERS_AUTOMATION_MAP.yaml`
+- `agents/WORKERS_AUTOMATION_MAP.yaml` (generated map)
 
 Там есть:
 
 - role_id;
-- trigger_label;
+- labels_source_file;
 - prompt_file;
-- labels для done/accept/reject.
+- agents_file.
 
 ## Рекомендуемая настройка trigger
 
 - Event type: Issue label changed (или эквивалент в Cursor Automation).
-- Condition: label == `req_start_<role_id>`.
+- Condition: label == `req_start_<role_id>` (берется из `ISSUE_LABELS_<ROLE>.yaml`).
 - Scope: repository-wide.
 
 ## Обязательный post-step
@@ -73,3 +73,9 @@
 2. Если label уже есть — воркер завершает запуск без выполнения роли.
 3. Если label нет — воркер ставит `in_work_<role_id>` и начинает работу.
 4. По завершению воркер снимает `in_work_<role_id>` и выставляет `done/accept` или `done/reject`.
+
+
+## Source-of-truth for role states
+
+- Источник states каждой роли: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`.
+- `WORKERS_AUTOMATION_MAP.yaml` и другие map-файлы считаются производными (generated).

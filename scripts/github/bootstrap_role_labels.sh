@@ -23,16 +23,24 @@ ensure_label() {
   fi
 }
 
+collect_labels_from_role_files() {
+  local file
+  for file in agents/roles/*/ISSUE_LABELS_*.yaml; do
+    [ -f "$file" ] || continue
+    sed -n 's/^  in_work: //p; s/^  done: //p; s/^  accept: //p; s/^  reject: //p' "$file"
+    sed -n 's/^  - //p' "$file"
+  done | sort -u
+}
+
 while IFS= read -r label; do
   [ -z "$label" ] && continue
   case "$label" in
     req_start_*) ensure_label "$label" "1d76db" "Request to start role" ;;
-    done_*) ensure_label "$label" "5319e7" "Role finished execution" ;;
     in_work_*) ensure_label "$label" "fbca04" "Role is currently processing (lock label)" ;;
+    done_*) ensure_label "$label" "5319e7" "Role finished execution" ;;
     accept_*) ensure_label "$label" "0e8a16" "Role result accepted" ;;
     reject_*) ensure_label "$label" "b60205" "Role result rejected" ;;
   esac
-done < <(sed -n 's/^  - name: //p' agents/state-machine/LABEL_REGISTRY.yaml)
+done < <(collect_labels_from_role_files)
 
 echo "Role labels bootstrap complete"
-

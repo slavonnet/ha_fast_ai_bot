@@ -24,63 +24,14 @@ for dir in "${role_dirs[@]}"; do
   role_name="$(basename "$dir")"
   upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
 
-  if [ ! -f "$dir/AGENTS.${upper}.md" ]; then
-    echo "[roles] Missing AGENTS file for role $role_name"
-    exit 1
-  fi
-  if [ ! -f "$dir/ISSUE_LABELS_${upper}.yaml" ]; then
-    echo "[roles] Missing labels yaml for role $role_name"
-    exit 1
-  fi
-  if [ ! -f "$dir/ROLE_PROMPT.md" ]; then
-    echo "[roles] Missing ROLE_PROMPT.md for role $role_name"
-    exit 1
-  fi
-
-done
-
-for req in   agents/rules/RULES.ISSUE_WORKFLOW.md   agents/rules/RULES.PR_WORKFLOW.md   agents/rules/RULES.CODE_DEVELOPMENT.md   agents/rules/RULES.TEST_DEVELOPMENT.md   agents/rules/RULES.DOC_DEVELOPMENT.md   agents/rules/RULES.STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json
-  do
-  if [ ! -f "$req" ]; then
-    echo "[roles] Missing required framework file: $req"
-    exit 1
-  fi
-done
-
-
-for req in   agents/state-machine/ROLE_PAIRS.md   agents/state-machine/ROLLBACK_MATRIX.json   agents/state-machine/LABEL_REGISTRY.yaml   agents/WORKERS_AUTOMATION_MAP.yaml   agents/AUTOMATION_SETUP.md
-  do
-  if [ ! -f "$req" ]; then
-    echo "[roles] Missing required automation/state file: $req"
-    exit 1
-  fi
-done
-
-
-for dir in "${role_dirs[@]}"; do
-  [ -d "$dir" ] || continue
-  role_name="$(basename "$dir")"
-  upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
+  agents_file="$dir/AGENTS.${upper}.md"
+  labels_file="$dir/ISSUE_LABELS_${upper}.yaml"
   prompt_file="$dir/ROLE_PROMPT.md"
   agents_ref="agents/roles/$role_name/AGENTS.${upper}.md"
 
-  if ! grep -q "Source of truth" "$prompt_file"; then
-    echo "[roles] ROLE_PROMPT must declare source-of-truth policy: $prompt_file"
-    exit 1
-  fi
-  if ! grep -q "$agents_ref" "$prompt_file"; then
-    echo "[roles] ROLE_PROMPT must reference role AGENTS file: $prompt_file"
-    exit 1
-  fi
-done
-
-
-for dir in "${role_dirs[@]}"; do
-  [ -d "$dir" ] || continue
-  role_name="$(basename "$dir")"
-  upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
-  agents_file="$dir/AGENTS.${upper}.md"
-  labels_file="$dir/ISSUE_LABELS_${upper}.yaml"
+  [ -f "$agents_file" ] || { echo "[roles] Missing $agents_file"; exit 1; }
+  [ -f "$labels_file" ] || { echo "[roles] Missing $labels_file"; exit 1; }
+  [ -f "$prompt_file" ] || { echo "[roles] Missing $prompt_file"; exit 1; }
 
   if grep -q "## Next step" "$agents_file"; then
     echo "[roles] Next-step section is forbidden in role AGENTS file: $agents_file"
@@ -90,24 +41,49 @@ for dir in "${role_dirs[@]}"; do
     echo "[roles] next_roles is forbidden in role labels file: $labels_file"
     exit 1
   fi
-done
 
-
-for dir in "${role_dirs[@]}"; do
-  [ -d "$dir" ] || continue
-  role_name="$(basename "$dir")"
-  upper="$(printf '%s' "$role_name" | tr '[:lower:]' '[:upper:]')"
-  labels_file="$dir/ISSUE_LABELS_${upper}.yaml"
-
-  if ! grep -q "^  in_work: in_work_${role_name}$" "$labels_file"; then
-    echo "[roles] in_work label is required in role labels file: $labels_file"
+  if ! grep -q "Source of truth" "$prompt_file"; then
+    echo "[roles] ROLE_PROMPT must declare source-of-truth policy: $prompt_file"
+    exit 1
+  fi
+  if ! grep -q "$agents_ref" "$prompt_file"; then
+    echo "[roles] ROLE_PROMPT must reference role AGENTS file: $prompt_file"
     exit 1
   fi
 
-  if ! grep -q "name: in_work_${role_name}$" agents/state-machine/LABEL_REGISTRY.yaml; then
-    echo "[roles] LABEL_REGISTRY missing in_work label for role: $role_name"
-    exit 1
-  fi
+  for key in in_work done accept reject; do
+    if ! grep -q "^  ${key}: " "$labels_file"; then
+      echo "[roles] Missing status label '${key}' in $labels_file"
+      exit 1
+    fi
+  done
+
+  while IFS= read -r label; do
+    [ -z "$label" ] && continue
+    case "$label" in
+      req_*|in_work_*|done_*|accept_*|reject_*) : ;;
+      *)
+        echo "[roles] Label prefix is not allowed ($label) in $labels_file"
+        exit 1
+        ;;
+    esac
+  done < <(sed -n 's/^  - //p; s/^  in_work: //p; s/^  done: //p; s/^  accept: //p; s/^  reject: //p' "$labels_file")
 done
+
+for req in   agents/rules/RULES.ISSUE_WORKFLOW.md   agents/rules/RULES.PR_WORKFLOW.md   agents/rules/RULES.CODE_DEVELOPMENT.md   agents/rules/RULES.TEST_DEVELOPMENT.md   agents/rules/RULES.DOC_DEVELOPMENT.md   agents/rules/RULES.STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.md   agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   agents/state-machine/ROLE_PAIRS.md   agents/state-machine/ROLLBACK_MATRIX.json   agents/WORKERS_AUTOMATION_MAP.yaml   agents/AUTOMATION_SETUP.md
+  do
+  [ -f "$req" ] || { echo "[roles] Missing required file: $req"; exit 1; }
+done
+
+
+if grep -q '"trigger_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"done_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"accept_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"reject_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json   || grep -q '"in_work_label"' agents/state-machine/STORY_SUBTASK_STATE_MACHINE.json; then
+  echo "[roles] State machine JSON must not duplicate role labels; use ISSUE_LABELS files"
+  exit 1
+fi
+
+if grep -q '^    trigger_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    done_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    accept_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    reject_label:' agents/WORKERS_AUTOMATION_MAP.yaml   || grep -q '^    in_work_label:' agents/WORKERS_AUTOMATION_MAP.yaml; then
+  echo "[roles] WORKERS_AUTOMATION_MAP must not duplicate role labels; use labels_source_file"
+  exit 1
+fi
 
 echo "[roles] Role framework integrity check passed"
