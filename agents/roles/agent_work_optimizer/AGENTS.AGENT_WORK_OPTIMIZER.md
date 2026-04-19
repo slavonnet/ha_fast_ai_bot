@@ -26,18 +26,19 @@
 
 ## Concurrency lock (in_work)
 - Перед началом роль должна atomically выставить `in_work_agent_work_optimizer`.
-- Если `in_work_agent_work_optimizer` уже есть, роль не начинает работу и завершает запуск без изменений.
-- После завершения роль обязана снять `in_work_agent_work_optimizer` и поставить один из финальных исходов:
+- Если `in_work_agent_work_optimizer` уже есть, роль не начинает работу и завершает запуск без каких-либо изменений labels.
+- Если роль захватила lock и начала выполнение, то после завершения обязана снять `in_work_agent_work_optimizer` и поставить один из финальных исходов:
   - `done_agent_work_optimizer` + `accept_agent_work_optimizer`
   - `done_agent_work_optimizer` + `reject_agent_work_optimizer`
 
 ## Label permissions
-- Разрешено менять только свои labels:
+- Разрешено менять только свои labels (по своему suffix `agent_work_optimizer`):
   - `in_work_agent_work_optimizer`
   - `done_agent_work_optimizer`
   - `accept_agent_work_optimizer`
   - `reject_agent_work_optimizer`
 - Запрещено менять labels других ролей и любые `req_start_*`.
+- Правило изменения labels определяется в `agents/rules/RULES.STATE_MACHINE.md#[LABEL.MUTATION_POLICY]`.
 
 ## Scope limits
 - Разрешено изменять только AGENTS-файл target роли.

@@ -85,4 +85,9 @@ runtime_context:
 ## Label mutation limits
 
 - Следовать `agents/rules/RULES.STATE_MACHINE.md#[LABEL.MUTATION_POLICY]`.
-- Нельзя изменять labels других ролей.
+- Разрешено менять только labels с suffix `agent_work_optimizer` и префиксами:
+  - `in_work_`
+  - `done_`
+  - `accept_`
+  - `reject_`
+- Нельзя изменять labels других ролей и любые `req_start_*`.
