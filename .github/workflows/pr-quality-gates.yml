@@ -1,0 +1,37 @@
+name: PR Quality Gates
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect changed files
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          git diff --name-only "origin/${{ github.base_ref }}"...HEAD > scripts/ci/changed_files.txt
+
+      - name: Make CI scripts executable
+        run: chmod +x scripts/ci/*.sh
+
+      - name: Test coverage gate
+        run: ./scripts/ci/check_python_coverage.sh
+
+      - name: Docs coverage gate
+        run: ./scripts/ci/check_docs_coverage.sh
+
+      - name: Security audit gate
+        run: ./scripts/ci/check_security_audit.sh

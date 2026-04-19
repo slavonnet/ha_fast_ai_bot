@@ -1,0 +1,41 @@
+name: "Tech Debt"
+description: "Фиксация технического долга"
+title: "[TechDebt] <short-name>"
+labels: ["tech-debt"]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source issue/PR
+      description: "Где был обнаружен долг"
+      placeholder: "#123 / PR #45"
+    validations:
+      required: true
+
+  - type: textarea
+    id: debt_desc
+    attributes:
+      label: Описание долга
+      description: "Что отложено и почему"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Влияние
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: plan
+    attributes:
+      label: План погашения
+      description: "Шаги и зависимости"
+    validations:
+      required: true

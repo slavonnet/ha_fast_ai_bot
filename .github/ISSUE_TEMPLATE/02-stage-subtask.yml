@@ -1,0 +1,52 @@
+name: "Stage Subtask"
+description: "Подзадача этапа с TDD UserStory"
+title: "[Subtask] <stage-name>: <short-task-name>"
+labels: ["subtask"]
+body:
+  - type: input
+    id: parent_meta_issue
+    attributes:
+      label: Parent Stage Meta Issue
+      description: "Ссылка на meta issue этапа"
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: textarea
+    id: task_description
+    attributes:
+      label: Подробная постановка
+      description: "Что нужно реализовать"
+    validations:
+      required: true
+
+  - type: textarea
+    id: tdd_user_stories
+    attributes:
+      label: TDD UserStory (5-10)
+      description: "Опишите UserStory-тесты верхнего уровня"
+      value: |
+        1. As a ..., I want ..., so that ...
+        2. As a ..., I want ..., so that ...
+        3. As a ..., I want ..., so that ...
+        4. As a ..., I want ..., so that ...
+        5. As a ..., I want ..., so that ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: "Измеримые критерии готовности"
+    validations:
+      required: true
+
+  - type: textarea
+    id: log_notes
+    attributes:
+      label: История изменений идеи
+      description: "Заполняется комментариями по мере реализации"
+      placeholder: "Решения, компромиссы, изменения подхода"
+    validations:
+      required: false
