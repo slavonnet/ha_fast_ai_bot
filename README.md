@@ -22,7 +22,8 @@
 3. Прочитать каркас агентных ролей:
    - `AGENTS.md`
    - `agents/rules/`
-   - `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+   - `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json` (текущий Story orchestrator)
+   - `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json` (рекомендуемая структура для нескольких orchestrator)
    - `agents/AUTOMATION_SETUP.md`
 4. Использовать шаблоны GitHub:
    - `.github/ISSUE_TEMPLATE/01-stage-meta.yml`
@@ -33,7 +34,7 @@
    - `scripts/github/create_issues_from_seed.sh`
    - `scripts/github/bootstrap_project_setup.sh`
    - `scripts/github/apply_github_bootstrap.sh`
-   - `scripts/github/bootstrap_role_labels.sh`
+   - `scripts/github/bootstrap_role_labels.py`
 
 ## CI Quality Gates
 
@@ -48,7 +49,7 @@
 - `scripts/ci/check_security_audit.sh`
 - `scripts/ci/check_issue_seed_integrity.sh`
 - `scripts/ci/check_pr_governance.sh`
-- `scripts/roles/validate_role_framework.sh`
+- `scripts/roles/validate_role_framework.py`
 
 ## Правило ведения этапов
 

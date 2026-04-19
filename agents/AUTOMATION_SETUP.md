@@ -9,7 +9,9 @@
 
 ## [AUTO.SOURCES]
 - `[SOURCE.ROLE_STATES]`: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
-- `[SOURCE.ORCHESTRATOR_TRANSITIONS]`: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- `[SOURCE.ORCHESTRATOR_TRANSITIONS]`:
+  - current Story: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+  - recommended target structure: `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json`
 - `agents/WORKERS_AUTOMATION_MAP.yaml` — только generated/autodiscovery конфиг.
 
 ## [AUTO.TRIGGER]

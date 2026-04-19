@@ -43,4 +43,4 @@ jobs:
         run: ./scripts/ci/check_pr_governance.sh
 
       - name: Role framework integrity gate
-        run: ./scripts/roles/validate_role_framework.sh
+        run: python3 scripts/roles/validate_role_framework.py

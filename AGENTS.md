@@ -16,10 +16,16 @@
 - Source: `agents/roles/<role_id>/ISSUE_LABELS_<ROLE_ID>.yaml`
 - Load when: чтение/изменение labels роли.
 
+## [SOURCE.ORCHESTRATOR_TYPES]
+- Оркестраторов может быть несколько.
+- Рекомендуемая структура: `agents/task_worker/<task_type_id>/`.
+- Для разных типов issue допускаются разные orchestrator-воркеры.
+
 ## [SOURCE.ORCHESTRATOR_TRANSITIONS]
 - What: порядок ролей, next-step, rollback.
-- Source: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
-- Owner: `orchestrator_story`
+- Source (recommended): `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json`
+- Source (current Story): `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- Owner: соответствующий orchestrator для конкретного `task_type_id`.
 - Load when: оркестрация или анализ переходов.
 
 ## [SOURCE.GLOBAL_RULES]
@@ -31,7 +37,7 @@
 - `[RULE.STATE_MACHINE]` -> `agents/rules/RULES.STATE_MACHINE.md`
 
 ## [ROLE.CATALOG]
-- `[ROLE.ORCHESTRATOR_STORY.RULES]` -> `agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md`
+- `[TASK_WORKER.STORY_ORCHESTRATOR.RULES]` -> `agents/roles/orchestrator_story/AGENTS.ORCHESTRATOR_STORY.md`
 - `[ROLE.TASK_COMPLETENESS_REVIEWER.RULES]` -> `agents/roles/task_completeness_reviewer/AGENTS.TASK_COMPLETENESS_REVIEWER.md`
 - `[ROLE.CHILD_ISSUES_DESIGNER.RULES]` -> `agents/roles/child_issues_designer/AGENTS.CHILD_ISSUES_DESIGNER.md`
 - `[ROLE.TDD_TEST_DESIGNER.RULES]` -> `agents/roles/tdd_test_designer/AGENTS.TDD_TEST_DESIGNER.md`

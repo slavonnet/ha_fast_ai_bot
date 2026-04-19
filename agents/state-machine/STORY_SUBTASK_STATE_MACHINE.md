@@ -2,6 +2,7 @@
 
 Source of truth:
 
-- `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- current Story: `agents/roles/orchestrator_story/ORCHESTRATION_STATE_MACHINE.json`
+- recommended target structure: `agents/task_worker/<task_type_id>/ORCHESTRATION_STATE_MACHINE.json`
 
 Этот файл только указатель.
