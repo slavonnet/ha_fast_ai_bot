@@ -13,7 +13,7 @@
 
 ## Gate R1 — GitHub Tracking Ready
 
-- [ ] Созданы milestones `Stage 0` .. `Stage 8`
+- [ ] Созданы milestones `Stage 0` .. `Stage 9`
 - [ ] Созданы базовые labels процесса:
   - [ ] `stage`
   - [ ] `meta`
@@ -21,8 +21,8 @@
   - [ ] `tech-debt`
   - [ ] `blocked`
   - [ ] `risk`
-- [ ] Созданы все Meta issues (`STG0..STG8`)
-- [ ] Созданы все Subtask issues (`STG0-01..STG8-04`)
+- [ ] Созданы все Meta issues (`STG0..STG9`)
+- [ ] Созданы все Subtask issues (`STG0-01..STG9-04`)
 - [ ] В каждой Subtask issue указан parent Meta Issue
 
 ## Gate R2 — Quality Gates Ready
